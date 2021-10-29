@@ -102,8 +102,8 @@ for track_data in tracks:
     artists_data = track["artists"]
     track_artists_ids = []
  
+    track_features = sp.audio_features(track_uri)[0]
     
-
     # Save track
     track_id = Track.replace(
         uri=track["uri"],
@@ -111,17 +111,17 @@ for track_data in tracks:
         duration_ms=track["duration_ms"],
         popularity=track["popularity"],
         lyrics="Lorem Ipsum",
-        acousticness=-1,
-        danceability=-1,
-        energy=-1,
-        instrumentalness=-1,
-        liveness=-1,
-        loudness=-1,
-        mode=-1,
-        speechiness=-1,
-        tempo=-1,
-        time_signature=-1,
-        valence=-1
+        acousticness= track_features["acousticness"],
+        danceability= track_features["danceability"],
+        energy= track_features["energy"],
+        instrumentalness= track_features["instrumentalness"],
+        liveness=track_features["liveness"],
+        loudness=track_features["loudness"],
+        mode=track_features["mode"],
+        speechiness=track_features["speechiness"],
+        tempo=track_features["tempo"],
+        time_signature=track_features["time_signature"],
+        valence=track_features["valence"]
     ).execute()
 
     track_instance = Track.get(track_id)
