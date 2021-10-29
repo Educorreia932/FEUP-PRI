@@ -54,7 +54,7 @@ class Track(BaseModel):
     name = CharField()
     duration_ms = IntegerField()
     lyrics = CharField()
-    artists = ManyToManyField(Artist)
+    artists = ManyToManyField(Artist, backref="tracks")
     popularity = IntegerField()
     acousticness = FloatField()
     danceability = FloatField()
@@ -79,7 +79,7 @@ class AlbumTrack(BaseModel):
 
 
 db.connect()
-db.create_tables([Album, AlbumTrack, Artist, Genre, Track])
+db.create_tables([Album, AlbumTrack, Artist, Genre, Track, Track.artists.get_through_model()])
 
 # Load environment variables
 load_dotenv()
@@ -100,17 +100,12 @@ for track_data in tracks:
     track = sp.track(track_uri)
     album = track["album"]
     artists_data = track["artists"]
+    track_artists_ids = []
+ 
+    
 
-    for artist_data in artists_data:
-        artist = sp.artist(artist_data["uri"])
-
-        Artist.replace(
-            uri=artist["uri"],
-            name=artist["name"],
-            popularity=artist["popularity"]
-        ).execute()
-
-    Track.replace(
+    # Save track
+    track_id = Track.replace(
         uri=track["uri"],
         name=track["name"],
         duration_ms=track["duration_ms"],
@@ -129,6 +124,21 @@ for track_data in tracks:
         valence=-1
     ).execute()
 
+    track_instance = Track.get(track_id)
+
+    for artist_data in artists_data:
+        artist = sp.artist(artist_data["uri"])
+
+        # Save artist
+        artist_id = Artist.replace(
+            uri=artist["uri"],
+            name=artist["name"],
+            popularity=artist["popularity"]
+        ).execute()
+
+        track_instance.artists.add(Artist.get(artist_id))
+
+    # Save album
     Album.replace(
         uri=album["uri"],
         name=album["name"],
