@@ -1,4 +1,4 @@
 dataset/
 .cache
-src/.env
 .env
+*.db
