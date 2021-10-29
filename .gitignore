@@ -1,4 +1,11 @@
+# Data
 dataset/
+
+# Cache
 .cache
+
+# Environment files
 .env
+
+# Database files
 *.db

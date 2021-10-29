@@ -1,5 +1,5 @@
 import json
-
+import os
 import spotipy
 
 from dotenv import load_dotenv
@@ -7,11 +7,14 @@ from lyricsgenius import Genius
 from peewee import *
 from rich import print
 from spotipy.oauth2 import SpotifyOAuth
+from tqdm import tqdm
 
+# TODO: Process the lyrics in a separate script
 
 # Setup database
 
-db = SqliteDatabase("database.db")
+database_path = os.path.join(os.path.dirname(__file__), "database.db")
+db = SqliteDatabase(database_path)
 
 
 class BaseModel(Model):
@@ -99,58 +102,67 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
 f = open("../dataset/data/mpd.slice.0-999.json")
 
 playlists = json.load(f)["playlists"]
-tracks = playlists[0]["tracks"]
 
-for track_data in tracks:
-    track_uri = track_data["track_uri"].split(":")[2]
+for playlist in playlists:
+    for track_data in tqdm(playlist["tracks"]):
+        track_uri = track_data["track_uri"].split(":")[2]
 
-    track = sp.track(track_uri)
-    album = track["album"]
-    artists_data = track["artists"]
-    track_artists_ids = []
+        track = sp.track(track_uri)
+        album = track["album"]
+        artists_data = track["artists"]
+        track_artists_ids = []
 
-    track_features = sp.audio_features(track_uri)[0]
+        track_features = sp.audio_features(track_uri)[0]
 
-    # Save track
-    track_id = Track.replace(
-        uri=track["uri"],
-        name=track["name"],
-        duration_ms=track["duration_ms"],
-        popularity=track["popularity"],
-        lyrics=genius.search_song(
-            track["name"], artists_data[0]["name"]).lyrics,
-        acousticness=track_features["acousticness"],
-        danceability=track_features["danceability"],
-        energy=track_features["energy"],
-        instrumentalness=track_features["instrumentalness"],
-        liveness=track_features["liveness"],
-        loudness=track_features["loudness"],
-        mode=track_features["mode"],
-        speechiness=track_features["speechiness"],
-        tempo=track_features["tempo"],
-        time_signature=track_features["time_signature"],
-        valence=track_features["valence"]
-    ).execute()
+        # song = genius.search_song(track["name"], artists_data[0]["name"])
 
-    track_instance = Track.get(track_id)
+        # if song is not None:
+        #     lyrics = song.lyrics
 
-    # Save track artists
-    for artist_data in artists_data:
-        artist = sp.artist(artist_data["uri"])
+        # else:
+        #     lyrics = None
 
-        artist_id = Artist.replace(
-            uri=artist["uri"],
-            name=artist["name"],
-            popularity=artist["popularity"]
+        lyrics = "Lorem Ipsum"
+
+        # Save track
+        track_id = Track.replace(
+            uri=track["uri"],
+            name=track["name"],
+            duration_ms=track["duration_ms"],
+            popularity=track["popularity"],
+            lyrics=lyrics,
+            acousticness=track_features["acousticness"],
+            danceability=track_features["danceability"],
+            energy=track_features["energy"],
+            instrumentalness=track_features["instrumentalness"],
+            liveness=track_features["liveness"],
+            loudness=track_features["loudness"],
+            mode=track_features["mode"],
+            speechiness=track_features["speechiness"],
+            tempo=track_features["tempo"],
+            time_signature=track_features["time_signature"],
+            valence=track_features["valence"]
         ).execute()
 
-        track_instance.artists.add(Artist.get(artist_id))
+        track_instance = Track.get(track_id)
 
-    # Save album
-    Album.replace(
-        uri=album["uri"],
-        name=album["name"],
-        album_type=album["album_type"],
-        release_date=album["release_date"],
-        total_tracks=album["total_tracks"]
-    ).execute()
+        # Save track artists
+        for artist_data in artists_data:
+            artist = sp.artist(artist_data["uri"])
+
+            artist_id = Artist.replace(
+                uri=artist["uri"],
+                name=artist["name"],
+                popularity=artist["popularity"]
+            ).execute()
+
+            track_instance.artists.add(Artist.get(artist_id))
+
+        # Save album
+        Album.replace(
+            uri=album["uri"],
+            name=album["name"],
+            album_type=album["album_type"],
+            release_date=album["release_date"],
+            total_tracks=album["total_tracks"]
+        ).execute()
