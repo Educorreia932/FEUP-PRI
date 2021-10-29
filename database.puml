@@ -2,21 +2,46 @@
 
 !theme sketchy-outline
 
+Artist "*" -- "*" Genre
+
 Album "*" -- "*" Track
-(Album, Track) .. TrackPosition
+(Album, Track) .. AlbumTrack
+
 Album "*" -- "*" Genre
 Album "*" -- "*" Artist
-Artist "*" -- "*" Genre
+
 Track "*" -- "*" Genre
 Track "*" -- "*" Artist
-Track "1" *-- "1" Lyrics
 
-Album : name
-Artist : name
 Genre : name
-Lyrics : lyrics_text
+
+Artist : uri
+Artist : name
+Artist : popularity
+
+Album : uri
+Album : name
+Album : album_type
+Album : release_date
+Album : total_tracks
+
+Track : uri
 Track : name
 Track : duration_ms
-TrackPosition : position_num
+Track : lyrics
+Track : popularity
+Track : acousticness
+Track : danceability 
+Track : energy
+Track : instrumentalness
+Track : liveness
+Track : loudness
+Track : mode
+Track : speechiness
+Track : tempo
+Track : time_signature
+Track : valence
+
+AlbumTrack : track_number
 
 @enduml

@@ -30,7 +30,14 @@ class AlbumType(IntegerField):
 
 
 class Genre(BaseModel):
+    name = CharField(unique=True)
+
+
+class Artist(BaseModel):
+    uri = CharField(unique=True)
     name = CharField()
+    genres = ManyToManyField(Genre)
+    popularity = IntegerField()
 
 
 class Album(BaseModel):
@@ -39,16 +46,15 @@ class Album(BaseModel):
     album_type = AlbumType()
     release_date = DateField()
     total_tracks = IntegerField()
-
-
-class Lyrics(BaseModel):
-    text = CharField()
+    artists = ManyToManyField(Artist)
 
 
 class Track(BaseModel):
     uri = CharField(unique=True)
+    name = CharField()
     duration_ms = IntegerField()
-    lyrics = ForeignKeyField(Lyrics)
+    lyrics = CharField()
+    artists = ManyToManyField(Artist)
     popularity = IntegerField()
     acousticness = FloatField()
     danceability = FloatField()
@@ -63,24 +69,17 @@ class Track(BaseModel):
     valence = FloatField()
 
 
-class TrackNumber(BaseModel):
+class AlbumTrack(BaseModel):
     album = ForeignKeyField(Album)
     track = ForeignKeyField(Track)
-    number = IntegerField()
+    track_number = IntegerField()
 
     class Meta:
         primary_key = CompositeKey("album", "track")
 
 
-class Artist(BaseModel):
-    uri = CharField(unique=True)
-    name = CharField()
-    genres = ManyToManyField(Genre)
-    popularity = IntegerField()
-
-
 db.connect()
-db.create_tables([Album, Artist, Genre, Lyrics, Track, TrackNumber])
+db.create_tables([Album, AlbumTrack, Artist, Genre, Track])
 
 # Load environment variables
 load_dotenv()
@@ -93,17 +92,47 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
 f = open("../dataset/data/mpd.slice.0-999.json")
 
 playlists = json.load(f)["playlists"]
+tracks = playlists[0]["tracks"]
 
-track = playlists[0]["tracks"][0]
-track_uri = track["track_uri"].split(":")[2]
+for track_data in tracks:
+    track_uri = track_data["track_uri"].split(":")[2]
 
-track_data = sp.track(track_uri)
-album = track_data["album"]
+    track = sp.track(track_uri)
+    album = track["album"]
+    artists_data = track["artists"]
 
-Album.create(
-    uri=album["uri"],
-    name=album["name"],
-    album_type=album["album_type"],
-    release_date=album["release_date"],
-    total_tracks=album["total_tracks"]
-)
+    for artist_data in artists_data:
+        artist = sp.artist(artist_data["uri"])
+
+        Artist.replace(
+            uri=artist["uri"],
+            name=artist["name"],
+            popularity=artist["popularity"]
+        ).execute()
+
+    Track.replace(
+        uri=track["uri"],
+        name=track["name"],
+        duration_ms=track["duration_ms"],
+        popularity=track["popularity"],
+        lyrics="Lorem Ipsum",
+        acousticness=-1,
+        danceability=-1,
+        energy=-1,
+        instrumentalness=-1,
+        liveness=-1,
+        loudness=-1,
+        mode=-1,
+        speechiness=-1,
+        tempo=-1,
+        time_signature=-1,
+        valence=-1
+    ).execute()
+
+    Album.replace(
+        uri=album["uri"],
+        name=album["name"],
+        album_type=album["album_type"],
+        release_date=album["release_date"],
+        total_tracks=album["total_tracks"]
+    ).execute()
