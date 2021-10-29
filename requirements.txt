@@ -1,5 +1,6 @@
+lyricsgenius
+peewee
+psycopg2
 python-dotenv
 rich
-peewee
 spotipy
-psycopg2

@@ -1,10 +1,13 @@
 import json
+
 import spotipy
 
 from dotenv import load_dotenv
+from lyricsgenius import Genius
 from peewee import *
 from rich import print
 from spotipy.oauth2 import SpotifyOAuth
+
 
 # Setup database
 
@@ -79,10 +82,14 @@ class AlbumTrack(BaseModel):
 
 
 db.connect()
-db.create_tables([Album, AlbumTrack, Artist, Genre, Track, Track.artists.get_through_model()])
+db.create_tables([Album, AlbumTrack, Artist, Genre, Track,
+                 Track.artists.get_through_model()])
 
 # Load environment variables
 load_dotenv()
+
+# Initialize Genius
+genius = Genius()
 
 # Create Spotify connection
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
@@ -101,20 +108,21 @@ for track_data in tracks:
     album = track["album"]
     artists_data = track["artists"]
     track_artists_ids = []
- 
+
     track_features = sp.audio_features(track_uri)[0]
-    
+
     # Save track
     track_id = Track.replace(
         uri=track["uri"],
         name=track["name"],
         duration_ms=track["duration_ms"],
         popularity=track["popularity"],
-        lyrics="Lorem Ipsum",
-        acousticness= track_features["acousticness"],
-        danceability= track_features["danceability"],
-        energy= track_features["energy"],
-        instrumentalness= track_features["instrumentalness"],
+        lyrics=genius.search_song(
+            track["name"], artists_data[0]["name"]).lyrics,
+        acousticness=track_features["acousticness"],
+        danceability=track_features["danceability"],
+        energy=track_features["energy"],
+        instrumentalness=track_features["instrumentalness"],
         liveness=track_features["liveness"],
         loudness=track_features["loudness"],
         mode=track_features["mode"],
@@ -126,10 +134,10 @@ for track_data in tracks:
 
     track_instance = Track.get(track_id)
 
+    # Save track artists
     for artist_data in artists_data:
         artist = sp.artist(artist_data["uri"])
 
-        # Save artist
         artist_id = Artist.replace(
             uri=artist["uri"],
             name=artist["name"],
