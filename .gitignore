@@ -3,6 +3,7 @@ dataset/
 
 # Cache
 .cache
+__pycache__/
 
 # Environment files
 .env

@@ -4,7 +4,8 @@ all: dependencies $(all_python_files)
 
 dependencies:
 	sudo apt install python3-pip
-	pip3 spoinstall json os dotenv peewee rich spotipy tqdm geniuspy
+	pip3 install -r requirements.txt
 
 database.db:
-	python index.py
+	python3 src/index.py
+	
