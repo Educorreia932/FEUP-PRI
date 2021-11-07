@@ -111,52 +111,83 @@ for playlist in tqdm(playlists):
 
         for track in tracks:
             album = track["album"]
-            artists_data = track["artists"]
-            track_artists_ids = []
-
-            track_features = sp.audio_features(track["uri"])[0]
-
-            lyrics = "Lorem Ipsum"
-
-            # Save track
-            track_id = Track.replace(
-                uri=track["uri"],
-                name=track["name"],
-                duration_ms=track["duration_ms"],
-                popularity=track["popularity"],
-                lyrics=lyrics,
-                acousticness=track_features["acousticness"],
-                danceability=track_features["danceability"],
-                energy=track_features["energy"],
-                instrumentalness=track_features["instrumentalness"],
-                liveness=track_features["liveness"],
-                loudness=track_features["loudness"],
-                mode=track_features["mode"],
-                speechiness=track_features["speechiness"],
-                tempo=track_features["tempo"],
-                time_signature=track_features["time_signature"],
-                valence=track_features["valence"]
-            ).execute()
-
-            track_instance = Track.get(track_id)
-
-            # Save track artists
-            for artist_data in artists_data:
-                artist = sp.artist(artist_data["uri"])
-
-                artist_id = Artist.replace(
-                    uri=artist["uri"],
-                    name=artist["name"],
-                    popularity=artist["popularity"]
-                ).execute()
-
-                track_instance.artists.add(Artist.get(artist_id))
-
+            
             # Save album
-            Album.replace(
+            album_id = Album.replace(
                 uri=album["uri"],
                 name=album["name"],
                 album_type=album["album_type"],
                 release_date=album["release_date"],
                 total_tracks=album["total_tracks"]
             ).execute()
+            
+
+            #Get album tracks; only reads 50 at a time
+            album_tracks_info = sp.album_tracks(album["uri"])
+            #Start getting album tracks from this offset
+            offset = 0
+            #Used to simulate a do while loop
+            still_reading_tracks = True
+            while album_tracks_info["next"] != None or still_reading_tracks:
+                offset = offset + 50
+                if(album_tracks_info["next"] == None):
+                    still_reading_tracks = False
+                
+                album_track_num = 0
+                
+                #Read from every track in the album
+                for album_track in album_tracks_info["items"]:
+                    album_track_num = album_track_num + 1
+
+                    lyrics = "Lorem Ipsum"
+                    
+                    if "popularity" not in album_track:
+                        album_track["popularity"] = -1
+                    track_features = sp.audio_features(album_track["uri"])[0]
+                    track_id = Track.replace(
+                        uri=album_track["uri"],
+                        name=album_track["name"],
+                        duration_ms=album_track["duration_ms"],
+                        popularity=album_track["popularity"],
+                        lyrics=lyrics,
+                        acousticness=track_features["acousticness"],
+                        danceability=track_features["danceability"],
+                        energy=track_features["energy"],
+                        instrumentalness=track_features["instrumentalness"],
+                        liveness=track_features["liveness"],
+                        loudness=track_features["loudness"],
+                        mode=track_features["mode"],
+                        speechiness=track_features["speechiness"],
+                        tempo=track_features["tempo"],
+                        time_signature=track_features["time_signature"],
+                        valence=track_features["valence"]
+                    ).execute()
+
+                    AlbumTrack.replace(
+                        album = album_id,
+                        track = track_id,
+                        track_number = album_track_num
+                    ).execute()
+                    artists_data = album_track["artists"]
+                    track_artists_ids = []
+
+
+
+
+                    track_instance = Track.get(track_id)
+
+                    # Save track artists
+                    for artist_data in artists_data:
+                        artist = sp.artist(artist_data["uri"])
+
+                        artist_id = Artist.replace(
+                            uri=artist["uri"],
+                            name=artist["name"],
+                            popularity=artist["popularity"]
+                        ).execute()
+
+                        track_instance.artists.add(Artist.get(artist_id))
+
+                #Get next n tracks
+                if still_reading_tracks:
+                    album_tracks_info = sp.album_tracks(album["uri"])
