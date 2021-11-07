@@ -1,0 +1,1 @@
+grep "[[:digit:]]" example.txt

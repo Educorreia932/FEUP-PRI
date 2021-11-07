@@ -1,0 +1,1 @@
+sed 's/light/dark/g' example.txt
