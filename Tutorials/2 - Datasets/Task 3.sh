@@ -1,0 +1,1 @@
+csvgrep -c 1 -r "y" example.csv | wc -l

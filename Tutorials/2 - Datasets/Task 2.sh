@@ -1,0 +1,1 @@
+csvcut -c 3 example.csv

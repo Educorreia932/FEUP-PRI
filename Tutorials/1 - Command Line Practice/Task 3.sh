@@ -1,1 +1,1 @@
-grep "[[:digit:]]" example.txt
+grep '[[:digit:]]' example.txt
