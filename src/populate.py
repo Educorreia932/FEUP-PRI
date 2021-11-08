@@ -27,7 +27,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     redirect_uri="http://127.0.0.1:8000/redirect",
 ))
 
-f = open(os.path.join(os.path.dirname(__file__), "../dataset/data/mpd.slice.0-999.json"))
+f = open(os.path.join(os.path.dirname(__file__), "../dataset.json"))
 
 playlists = json.load(f)["playlists"]
 
@@ -44,6 +44,9 @@ for playlist in playlists:
 
         for track in tracks:
             album = track["album"]
+
+            if Album.select().where(Album.uri == album["uri"]).exists():
+                continue
 
             # Save album
             album_id = Album.replace(
