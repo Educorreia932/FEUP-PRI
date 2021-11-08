@@ -1,4 +1,5 @@
 import json
+import lyricsgenius
 import os
 import spotipy
 
@@ -9,15 +10,17 @@ from rich import print
 from spotipy.oauth2 import SpotifyOAuth
 from tqdm import tqdm
 
-# Setup database
-
-database_path = os.path.join(os.path.dirname(__file__), "../out/database/database.db")
-
-db.init(database_path)
-db.create_tables([Album, AlbumTrack, Artist, Genre, Track, Track.artists.get_through_model()])
-
 # Load environment variables
 load_dotenv()
+
+# Setup database
+database_path = os.path.join(os.path.dirname(__file__), "../data/database.db")
+
+# Setup Genius 
+genius = lyricsgenius.Genius(skip_non_songs=True, excluded_terms=["(Remix)", "(Live)"], remove_section_headers=True)
+
+db.init(database_path)
+db.create_tables([Album, AlbumTrack, Artist, Genre, Track, Track.artists.get_through_model(), Album.artists.get_through_model()])
 
 # Create Spotify connection
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
@@ -28,7 +31,8 @@ f = open(os.path.join(os.path.dirname(__file__), "../dataset/data/mpd.slice.0-99
 
 playlists = json.load(f)["playlists"]
 
-for playlist in tqdm(playlists):
+# Iterate over playlist
+for playlist in playlists:
     playlist_track_uris = []
 
     for playlist_track in playlist["tracks"]:
@@ -50,6 +54,23 @@ for playlist in tqdm(playlists):
                 total_tracks=album["total_tracks"]
             ).execute()
 
+            # Save album artists
+            album_artists_ids = []
+
+            album_instance = Album.get(album_id)
+
+            # Save album artists
+            for artist_data in album["artists"]:
+                artist = sp.artist(artist_data["uri"])
+
+                artist_id = Artist.replace(
+                    uri=artist["uri"],
+                    name=artist["name"],
+                    popularity=artist["popularity"]
+                ).execute()
+
+                album_instance.artists.add(Artist.get(artist_id))
+
             # Get album tracks. Only reads 50 at a time
             album_tracks_info = sp.album_tracks(album["uri"])
 
@@ -67,22 +88,24 @@ for playlist in tqdm(playlists):
 
                 album_track_num = 0
 
-                # Read from every track in the album
+                # Read every track in the album
                 for album_track in album_tracks_info["items"]:
-                    album_track_num = album_track_num + 1
+                    album_track_num += 1
 
-                    lyrics = "Lorem Ipsum"
+                    # Retrieve lyrics
+                    track_lyrics = None
+                    genius_entry = genius.search_song(album_track["name"], album_track["artists"][0]["name"])
 
-                    if "popularity" not in album_track:
-                        album_track["popularity"] = -1
+                    if genius_entry:
+                        track_lyrics = genius_entry.lyrics
 
+                    # Retrieve and save track features
                     track_features = sp.audio_features(album_track["uri"])[0]
                     track_id = Track.replace(
                         uri=album_track["uri"],
                         name=album_track["name"],
                         duration_ms=album_track["duration_ms"],
-                        popularity=album_track["popularity"],
-                        lyrics=lyrics,
+                        lyrics=track_lyrics,
                         acousticness=track_features["acousticness"],
                         danceability=track_features["danceability"],
                         energy=track_features["energy"],
@@ -96,11 +119,13 @@ for playlist in tqdm(playlists):
                         valence=track_features["valence"]
                     ).execute()
 
+                    # Save album track
                     AlbumTrack.replace(
                         album=album_id,
                         track=track_id,
                         track_number=album_track_num
                     ).execute()
+
                     artists_data = album_track["artists"]
                     track_artists_ids = []
 

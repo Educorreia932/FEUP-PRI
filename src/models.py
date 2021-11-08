@@ -37,16 +37,15 @@ class Album(BaseModel):
     album_type = AlbumType()
     release_date = DateField()
     total_tracks = IntegerField()
-    artists = ManyToManyField(Artist)
+    artists = ManyToManyField(Artist, backref="albums")
 
 
 class Track(BaseModel):
     uri = CharField(unique=True)
     name = CharField()
     duration_ms = IntegerField()
-    lyrics = CharField()
+    lyrics = CharField(null = True)
     artists = ManyToManyField(Artist, backref="tracks")
-    popularity = IntegerField()
     acousticness = FloatField()
     danceability = FloatField()
     energy = FloatField()

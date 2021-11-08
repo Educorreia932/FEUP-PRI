@@ -1,11 +1,14 @@
 target := database.db
 
-all: dependencies $(all_python_files)
+all: data/database.db
 
-dependencies:
-	sudo apt install python3-pip
-	pip3 install -r requirements.txt
+data/database.db:
+	@echo "Populating database..."
+	@python3 src/populate.py
 
-database.db:
-	python3 src/index.py
-	
+clean:
+	@rm -rf data/*
+
+# out/charts/*:
+
+# TODO: Clean data and process

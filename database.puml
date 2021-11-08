@@ -4,12 +4,13 @@
 
 Artist "*" - "*" Genre
 
-Album "*" -- "*" Track
+Album "*" - "*" Track
 (Album, Track) .. AlbumTrack
-Album "*" - "*" Genre
+Album "*" -- "*" Genre
 Album "*" - "*" Artist
 
 Track "*" - "*" Artist
+Track "1" - "1" TrackFeatures
 
 Genre : name
 
@@ -27,18 +28,18 @@ Track : uri
 Track : name
 Track : duration_ms
 Track : lyrics
-Track : popularity
-Track : acousticness
-Track : danceability 
-Track : energy
-Track : instrumentalness
-Track : liveness
-Track : loudness
-Track : mode
-Track : speechiness
-Track : tempo
-Track : time_signature
-Track : valence
+
+TrackFeatures : acousticness
+TrackFeatures : danceability 
+TrackFeatures : energy
+TrackFeatures : instrumentalness
+TrackFeatures : liveness
+TrackFeatures : loudness
+TrackFeatures : mode
+TrackFeatures : speechiness
+TrackFeatures : tempo
+TrackFeatures : time_signature
+TrackFeatures : valence
 
 AlbumTrack : track_number
 
