@@ -27,8 +27,8 @@ class Genre(BaseModel):
 class Artist(BaseModel):
     uri = CharField(unique=True)
     name = CharField()
-    genres = ManyToManyField(Genre)
     popularity = IntegerField()
+    genres = ManyToManyField(Genre, backref="artists")
 
 
 class Album(BaseModel):
@@ -62,7 +62,7 @@ class Track(BaseModel):
 class AlbumTrack(BaseModel):
     album = ForeignKeyField(Album)
     track = ForeignKeyField(Track)
-    track_number = IntegerField()
+    # track_number = IntegerField()
 
     class Meta:
         primary_key = CompositeKey("album", "track")

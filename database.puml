@@ -2,12 +2,11 @@
 
 !theme sketchy-outline
 
-Artist "*" - "*" Genre
+Artist "*" -right- "*" Genre
 
 Album "*" - "*" Track
 (Album, Track) .. AlbumTrack
-Album "*" -- "*" Genre
-Album "*" - "*" Artist
+Album "*" --- "*" Artist
 
 Track "*" - "*" Artist
 Track "1" - "1" TrackFeatures
