@@ -16,18 +16,15 @@ load_dotenv()
 # Setup database
 database_path = os.path.join(os.path.dirname(__file__), "../data/database.db")
 
-# Setup Genius 
-genius = lyricsgenius.Genius(remove_section_headers=True)
-
 db.init(database_path)
 db.create_tables([
-    Album, 
-    AlbumTrack, 
-    Artist, 
-    Genre, 
-    Track, 
-    Track.artists.get_through_model(), 
-    Album.artists.get_through_model(), 
+    Album,
+    AlbumTrack,
+    Artist,
+    Genre,
+    Track,
+    Track.artists.get_through_model(),
+    Album.artists.get_through_model(),
     Artist.genres.get_through_model()
 ])
 
@@ -41,7 +38,7 @@ f = open(os.path.join(os.path.dirname(__file__), "../data/dataset.json"))
 playlists = json.load(f)["playlists"]
 
 # Iterate over playlist
-for playlist in tqdm(playlists[:100]):
+for playlist in tqdm(playlists[300:400]):
     playlist_track_uris = []
 
     for playlist_track in playlist["tracks"]:
@@ -85,20 +82,12 @@ for playlist in tqdm(playlists[:100]):
 
                 album_instance.artists.add(artist_instance)
 
-            # Retrieve lyrics
-            track_lyrics = None
-            #genius_entry = genius.search_song(track["name"], track["artists"][0]["name"])
-
-            #if genius_entry:
-            #    track_lyrics = genius_entry.lyrics
-
             # Retrieve and save track features
             track_features = sp.audio_features(track["uri"])[0]
             track_instance, _ = Track.get_or_create(
                 uri=track["uri"],
                 name=track["name"],
                 duration_ms=track["duration_ms"],
-                lyrics=track_lyrics,
                 acousticness=track_features["acousticness"],
                 danceability=track_features["danceability"],
                 energy=track_features["energy"],

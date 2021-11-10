@@ -2,10 +2,15 @@ target := database.db
 
 all: data/database.db
 
-data/database.db:
+data/database.db: populate lyrics
+	
+populate:
 	@echo "Populating database..."
 	@python3 src/populate.py
-# TODO: Clean data and process
+
+lyrics: 
+	@echo "Retrieving lyrics..."
+	@python3 src/lyrics.py
 
 clean:
 	@rm -rf data/database.db
