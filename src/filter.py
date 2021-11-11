@@ -107,6 +107,7 @@ with engine.begin() as connection:
     engine.execute("DELETE FROM track WHERE lower(name) LIKE '%instrumental%';")
     engine.execute("DELETE FROM album WHERE name == \"\" OR name IS NULL;")
     engine.execute("DELETE FROM album WHERE lower(name) LIKE '%instrumental%';")
+    engine.execute("DELETE FROM artist WHERE lower(name) LIKE '%instrumental%';")
     engine.execute("DELETE FROM artist WHERE name == \"\" OR name IS NULL;")
     engine.execute("DELETE FROM genre WHERE name == \"\" OR name IS NULL;")
     
