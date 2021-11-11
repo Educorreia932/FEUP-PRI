@@ -98,7 +98,7 @@ with engine.begin() as connection:
     album_artist_through.to_sql('album_artist_through', engine, if_exists="replace", index=False)
     albumtrack.to_sql('albumtrack', engine, if_exists="replace", index=False)
     artist.to_sql('artist', engine, if_exists="replace", index=False)
-    album_artist_through.to_sql('artist_genre_through', engine, if_exists="replace", index=False)
+    artist_genre_through.to_sql('artist_genre_through', engine, if_exists="replace", index=False)
     genre.to_sql('genre', engine, if_exists="replace", index=False)
     track.to_sql('track', engine, if_exists="replace", index=False)
     track_artist_through.to_sql('track_artist_through', engine, if_exists="replace", index=False)

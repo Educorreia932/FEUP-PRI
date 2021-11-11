@@ -27,6 +27,7 @@ Track : uri
 Track : name
 Track : duration_ms
 Track : lyrics
+Track : explicit
 
 TrackFeatures : acousticness
 TrackFeatures : danceability 

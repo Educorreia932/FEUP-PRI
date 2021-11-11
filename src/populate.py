@@ -38,7 +38,7 @@ f = open(os.path.join(os.path.dirname(__file__), "../data/dataset.json"))
 playlists = json.load(f)["playlists"]
 
 # Iterate over playlist
-for playlist in tqdm(playlists[300:400]):
+for playlist in tqdm(playlists[357:]):
     playlist_track_uris = []
 
     for playlist_track in playlist["tracks"]:
@@ -52,39 +52,38 @@ for playlist in tqdm(playlists[300:400]):
             album_data = track["album"]
 
             # Save album
-            album_id = Album.replace(
+            album_instance, album_created = Album.get_or_create(
                 uri=album_data["uri"],
                 name=album_data["name"],
                 album_type=album_data["album_type"],
                 release_date=album_data["release_date"],
                 total_tracks=album_data["total_tracks"]
-            ).execute()
+            )
 
             album_artists_ids = []
 
-            album_instance = Album.get(album_id)
-
             # Save album artists
-            for artist_data in album_data["artists"]:
-                artist = sp.artist(artist_data["uri"])
+            if album_created:
+                for artist_data in album_data["artists"]:
+                    artist = sp.artist(artist_data["uri"])
 
-                artist_instance, artist_created = Artist.get_or_create(
-                    uri=artist["uri"],
-                    name=artist["name"],
-                    popularity=artist["popularity"]
-                )
+                    artist_instance, artist_created = Artist.get_or_create(
+                        uri=artist["uri"],
+                        name=artist["name"],
+                        popularity=artist["popularity"]
+                    )
 
-                if artist_created:
-                    for genre in artist["genres"]:
-                        genre_instance, _ = Genre.get_or_create(name=genre)
+                    if artist_created:
+                        for genre in artist["genres"]:
+                            genre_instance, _ = Genre.get_or_create(name=genre)
 
-                        artist_instance.genres.add(genre_instance)
+                            artist_instance.genres.add(genre_instance)
 
-                album_instance.artists.add(artist_instance)
+                    album_instance.artists.add(artist_instance)
 
             # Retrieve and save track features
             track_features = sp.audio_features(track["uri"])[0]
-            track_instance, _ = Track.get_or_create(
+            track_instance, track_created = Track.get_or_create(
                 uri=track["uri"],
                 name=track["name"],
                 duration_ms=track["duration_ms"],
@@ -102,23 +101,23 @@ for playlist in tqdm(playlists[300:400]):
             )
 
             # Save album track
-            AlbumTrack.replace(
-                album=album_id,
+            AlbumTrack.get_or_create(
+                album=album_instance.id,
                 track=track_instance.id,
-                # track_number=track_number
-            ).execute()
+            )
 
             artists_data = track["artists"]
             track_artists_ids = []
 
             # Save track artists
-            for artist_data in artists_data:
-                artist = sp.artist(artist_data["uri"])
+            if track_created:
+                for artist_data in artists_data:
+                    artist = sp.artist(artist_data["uri"])
 
-                artist_id = Artist.replace(
-                    uri=artist["uri"],
-                    name=artist["name"],
-                    popularity=artist["popularity"]
-                ).execute()
+                    artist_instance, _ = Artist.get_or_create(
+                        uri=artist["uri"],
+                        name=artist["name"],
+                        popularity=artist["popularity"]
+                    )
 
-                track_instance.artists.add(Artist.get(artist_id))
+                    track_instance.artists.add(artist_instance)

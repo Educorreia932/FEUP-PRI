@@ -2,7 +2,7 @@ import os
 import re
 
 from dotenv import load_dotenv
-from lyrics_extractor import SongLyrics, LyricScraperException
+from lyricsgenius import Genius
 from models import *
 from peewee import *
 from tqdm import tqdm
@@ -10,25 +10,23 @@ from tqdm import tqdm
 # Load environment variables
 load_dotenv()
 
+# Setup Genius
+genius = Genius(remove_section_headers=True, verbose=False)
+
 # Setup database
 db.init(os.path.dirname(__file__) + "/../data/database.db")
 
-extract_lyrics = SongLyrics("AIzaSyDmZhnh3tsbCoYQmTdwMBP_WKNYg-kzzZ0", "dd09d107e1d0774a2")
-
 TrackArtist = Track.artists.get_through_model()
 
-tracks = Track.select(Track, TrackArtist, Artist).join(TrackArtist).join(Artist)
+tracks = Track.select()
 
-for track in tqdm(tracks):
+for track in tqdm(tracks[11337:]):
     artist = track.artists[0]
-        
-    lyrics = extract_lyrics.get_lyrics(f"{track.name}-{artist.name}")["lyrics"]
 
-    if lyrics:
-         # Remove headers
-        lyrics = re.sub(r"\[Intro\](.*\n)+?\n", "", lyrics)
-        lyrics = re.sub(r"\[.*\]", "", lyrics)
+    try:
+        lyrics = genius.search_song(track.name, artist.name).lyrics
 
-        print(lyrics)
+    except Exception:
+        continue
 
-        Track.update(lyrics=lyrics).where(Track.id == track.id).execute()
+    Track.update(lyrics=lyrics).where(Track.id == track.id).execute()
