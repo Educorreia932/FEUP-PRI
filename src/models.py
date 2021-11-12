@@ -61,8 +61,7 @@ class Track(BaseModel):
 
 class AlbumTrack(BaseModel):
     album = ForeignKeyField(Album)
-    track = ForeignKeyField(Track)
-    # track_number = IntegerField()
+    track = ForeignKeyField(Track, on_delete='CASCADE')
 
     class Meta:
         primary_key = CompositeKey("album", "track")
