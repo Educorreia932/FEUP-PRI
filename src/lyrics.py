@@ -20,7 +20,7 @@ TrackArtist = Track.artists.get_through_model()
 
 tracks = Track.select()
 
-for track in tqdm(tracks[11337:]):
+for track in tqdm(tracks):
     artist = track.artists[0]
 
     try:
@@ -30,3 +30,4 @@ for track in tqdm(tracks[11337:]):
         continue
 
     Track.update(lyrics=lyrics).where(Track.id == track.id).execute()
+    
