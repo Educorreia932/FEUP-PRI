@@ -1,8 +1,4 @@
-# Project
-
-https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge#evaluation
-
-![Database Scheme](out/database/database.png)
+# Spot & Find
 
 ## Instructions
 

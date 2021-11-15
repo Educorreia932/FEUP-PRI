@@ -3,4 +3,3 @@ peewee==3.14.8
 psycopg2==2.9.1
 python-dotenv==0.19.1
 spotipy==2.19.0
-tqdm==4.62.3
