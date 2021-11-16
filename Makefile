@@ -19,7 +19,7 @@ lyrics:
 	@echo "Retrieving lyrics..."
 	@python3 src/lyrics.py
 
-# Filter incorrect information from database
+# Filter incorrect information from database. Also adds the explicit boolean to tracks, artists and albums and other miscellaneous filtering
 filter:
 	@jupyter nbconvert --to python out/stats.ipynb
 	@echo "Filtering database..."
