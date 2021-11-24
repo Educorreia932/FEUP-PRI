@@ -4,17 +4,12 @@ all: data/database.db
 
 data/database.db: populate lyrics filter
 	
-# Iterate over playlists present in the JSON dataset file
-# For each playlist, retrieve its tracks' information from Spotify API
-# Do the same for the track's artists and albums
-# Save retrieved information in the database
+# Populate database with Spotify data
 populate:
 	@echo "Populating database..."
 	@python3 src/populate.py
 
-# Iterate over tracks and their respective artists, that are already stored in the database
-# Retrieve the lyrics for each track by scraping its Genius webpage entry
-# Save lyrics to the database
+# Update track lyrics
 lyrics: 
 	@echo "Retrieving lyrics..."
 	@python3 src/lyrics.py

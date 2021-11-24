@@ -5,8 +5,7 @@
 Artist "*" -right- "*" Genre
 
 Album "*" - "*" Track
-(Album, Track) .. AlbumTrack
-Album "*" --- "*" Artist
+Album "*" -- "*" Artist
 
 Track "*" - "*" Artist
 Track "1" - "1" TrackFeatures
@@ -14,18 +13,21 @@ Track "1" - "1" TrackFeatures
 Genre : name
 
 Artist : uri
+Artist : explicit
 Artist : name
 Artist : popularity
 
 Album : uri
 Album : name
 Album : album_type
+Album : explicit
 Album : release_date
 Album : total_tracks
 
 Track : uri
 Track : name
 Track : duration_ms
+Track : explicit
 Track : lyrics
 Track : explicit
 
@@ -40,7 +42,5 @@ TrackFeatures : speechiness
 TrackFeatures : tempo
 TrackFeatures : time_signature
 TrackFeatures : valence
-
-AlbumTrack : track_number
 
 @enduml

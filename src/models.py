@@ -46,6 +46,7 @@ class Track(BaseModel):
     duration_ms = IntegerField()
     lyrics = CharField(null = True)
     artists = ManyToManyField(Artist, backref="tracks")
+    albums = ManyToManyField(Album, backref="tracks")
     acousticness = FloatField()
     danceability = FloatField()
     energy = FloatField()
@@ -57,11 +58,3 @@ class Track(BaseModel):
     tempo = FloatField()
     time_signature = IntegerField()
     valence = FloatField()
-
-
-class AlbumTrack(BaseModel):
-    album = ForeignKeyField(Album)
-    track = ForeignKeyField(Track, on_delete='CASCADE')
-
-    class Meta:
-        primary_key = CompositeKey("album", "track")

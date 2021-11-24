@@ -38,7 +38,7 @@ f = open(os.path.join(os.path.dirname(__file__), "../data/dataset.json"))
 playlists = json.load(f)["playlists"]
 
 # Iterate over playlist
-for playlist in tqdm(playlists[357:]):
+for playlist in tqdm(playlists):
     playlist_track_uris = []
 
     for playlist_track in playlist["tracks"]:
