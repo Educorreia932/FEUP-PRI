@@ -9,15 +9,17 @@ from tqdm import tqdm
 db.init(os.path.dirname(__file__) + "/../data/database.db")
 
 TrackArtist = Track.artists.get_through_model()
+TrackAlbum = Track.albums.get_through_model()
 ArtistGenre = Artist.genres.get_through_model()
 
 tracks = Track.select().dicts().execute()
 
 # Iterate over tracks
 for track in tqdm(tracks):
-    # Iterate over track artists
     artists = []
+    albums = []
 
+    # Iterate over track artists
     track_artists = TrackArtist.select().where(TrackArtist.track_id == track["id"]).dicts().execute()
 
     for track_artist in track_artists:
@@ -37,9 +39,15 @@ for track in tqdm(tracks):
 
         artists.append(artist)
 
-        print(artist)
+    # Iterate over track albums
+    track_albums = TrackAlbum.select().where(TrackAlbum.track_id == track["id"]).dicts().execute()
+
+    for track_album in track_albums:
+        album = model_to_dict(Album.get(track_album["album"]))
+
+        albums.append(album)
 
     track["artists"] = artists
+    track["albums"] = albums
 
     break 
-
