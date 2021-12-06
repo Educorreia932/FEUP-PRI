@@ -14,7 +14,7 @@ load_dotenv()
 genius = Genius(remove_section_headers=True, verbose=False)
 
 # Setup database
-db.init(os.path.dirname(__file__) + "/../data/database.db")
+db.init(os.path.dirname(__file__) + "data/database.db")
 
 TrackArtist = Track.artists.get_through_model()
 

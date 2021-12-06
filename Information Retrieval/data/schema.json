@@ -1,0 +1,43 @@
+{
+    "add-field-type": [
+        {
+            "name": "trackName",
+            "class": "solr.TextField",
+            "indexAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {
+                        "class":"solr.ASCIIFoldingFilterFactory", 
+                        "preserveOriginal":true
+                    },
+                    {
+                        "class":"solr.LowerCaseFilterFactory"
+                    }
+                ]
+            },
+            "queryAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters": [
+                    {
+                        "class":"solr.ASCIIFoldingFilterFactory", 
+                        "preserveOriginal":true
+                    },
+                    {
+                        "class":"solr.LowerCaseFilterFactory"
+                    }
+                ]
+            }
+        }
+    ],
+    "add-field": [
+        {
+            "name": "name",
+            "type": "trackName",
+            "indexed": true
+        }
+    ]
+}

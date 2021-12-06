@@ -14,7 +14,7 @@ from tqdm import tqdm
 load_dotenv()
 
 # Setup database
-database_path = os.path.join(os.path.dirname(__file__), "../data/database.db")
+database_path = os.path.join(os.path.dirname(__file__), "data/database.db")
 
 db.init(database_path)
 db.create_tables([
