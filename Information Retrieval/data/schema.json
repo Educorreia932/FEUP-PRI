@@ -12,8 +12,45 @@
                         "class":"solr.ASCIIFoldingFilterFactory", 
                         "preserveOriginal":true
                     },
+                        
                     {
                         "class":"solr.LowerCaseFilterFactory"
+                    }
+                ]
+            },
+            "queryAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters": [
+                    {
+                        "class":"solr.ASCIIFoldingFilterFactory", 
+                        "preserveOriginal":true
+                    },
+                    {
+                        "class":"solr.LowerCaseFilterFactory"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "trackLyrics",
+            "class": "solr.TextField",
+            "indexAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {
+                        "class":"solr.ASCIIFoldingFilterFactory", 
+                        "preserveOriginal":true
+                    },
+                    {
+                        "class":"solr.LowerCaseFilterFactory"
+                    },
+                    {
+                        "class":"solr.StopFilterFactory", 
+                        "ignoreCase": true
                     }
                 ]
             },
@@ -37,7 +74,16 @@
         {
             "name": "name",
             "type": "trackName",
-            "indexed": true
+            "indexed": true, 
+            "uninvertible": false
+        },
+        {
+            "name": "lyrics",
+            "type": "trackLyrics",
+            "indexed": true,
+            "stored": true,
+            "large": true, 
+            "uninvertible": false
         }
     ]
 }
