@@ -7,14 +7,16 @@
                 "tokenizer": {
                     "class": "solr.StandardTokenizerFactory"
                 },
-                "filters":[
+                "filters": [
                     {
-                        "class":"solr.ASCIIFoldingFilterFactory", 
-                        "preserveOriginal":true
+                        "class": "solr.ASCIIFoldingFilterFactory",
+                        "preserveOriginal": true
                     },
-                        
                     {
-                        "class":"solr.LowerCaseFilterFactory"
+                        "class": "solr.LowerCaseFilterFactory"
+                    },
+                    {
+                        "class": "solr.EnglishPossessiveFilterFactory"
                     }
                 ]
             },
@@ -24,11 +26,14 @@
                 },
                 "filters": [
                     {
-                        "class":"solr.ASCIIFoldingFilterFactory", 
-                        "preserveOriginal":true
+                        "class": "solr.ASCIIFoldingFilterFactory",
+                        "preserveOriginal": true
                     },
                     {
-                        "class":"solr.LowerCaseFilterFactory"
+                        "class": "solr.LowerCaseFilterFactory"
+                    },
+                    {
+                        "class": "solr.EnglishPossessiveFilterFactory"
                     }
                 ]
             }
@@ -40,17 +45,20 @@
                 "tokenizer": {
                     "class": "solr.StandardTokenizerFactory"
                 },
-                "filters":[
+                "filters": [
                     {
-                        "class":"solr.ASCIIFoldingFilterFactory", 
-                        "preserveOriginal":true
+                        "class": "solr.ASCIIFoldingFilterFactory",
+                        "preserveOriginal": true
                     },
                     {
-                        "class":"solr.LowerCaseFilterFactory"
+                        "class": "solr.LowerCaseFilterFactory"
                     },
                     {
-                        "class":"solr.StopFilterFactory", 
+                        "class": "solr.StopFilterFactory",
                         "ignoreCase": true
+                    },
+                    {
+                        "class": "solr.EnglishPossessiveFilterFactory"
                     }
                 ]
             },
@@ -60,21 +68,28 @@
                 },
                 "filters": [
                     {
-                        "class":"solr.ASCIIFoldingFilterFactory", 
-                        "preserveOriginal":true
+                        "class": "solr.ASCIIFoldingFilterFactory",
+                        "preserveOriginal": true
                     },
                     {
-                        "class":"solr.LowerCaseFilterFactory"
+                        "class": "solr.LowerCaseFilterFactory"
+                    },
+                    {
+                        "class": "solr.EnglishPossessiveFilterFactory"
                     }
                 ]
             }
+        },
+        {
+            "name": "artistName",
+            "class": "solr.TextField"
         }
     ],
     "add-field": [
         {
             "name": "name",
             "type": "trackName",
-            "indexed": true, 
+            "indexed": true,
             "uninvertible": false
         },
         {
@@ -82,7 +97,7 @@
             "type": "trackLyrics",
             "indexed": true,
             "stored": true,
-            "large": true, 
+            "large": true,
             "uninvertible": false
         }
     ]
