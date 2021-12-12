@@ -42,7 +42,8 @@
                         "class": "solr.LowerCaseFilterFactory"
                     }
                 ]
-            }},
+            }
+        },
         {
             "name": "trackName",
             "class": "solr.TextField",
@@ -65,8 +66,7 @@
                         "class": "solr.CommonGramsFilterFactory"
                     },
                     {
-                        "class": "solr.HyphenatedWordsFilterFactory",
-                        "preserveOriginal": true
+                        "class": "solr.HyphenatedWordsFilterFactory"
                     }
                 ]
             },
@@ -89,8 +89,7 @@
                         "class": "solr.CommonGramsFilterFactory"
                     },
                     {
-                        "class": "solr.HyphenatedWordsFilterFactory",
-                        "preserveOriginal": true
+                        "class": "solr.HyphenatedWordsFilterFactory"
                     }
                 ]
             }
@@ -121,8 +120,7 @@
                         "class": "solr.ClassicFilterFactory"
                     },
                     {
-                        "class": "solr.HyphenatedWordsFilterFactory",
-                        "preserveOriginal": true
+                        "class": "solr.HyphenatedWordsFilterFactory"
                     }
                 ]
             },
@@ -149,8 +147,7 @@
                         "class": "solr.ClassicFilterFactory"
                     },
                     {
-                        "class": "solr.HyphenatedWordsFilterFactory",
-                        "preserveOriginal": true
+                        "class": "solr.HyphenatedWordsFilterFactory"
                     }
                 ]
             }
@@ -166,8 +163,7 @@
             "type": "genericText",
             "indexed": false,
             "stored": false,
-            "uninvertible": false,
-            "required": true
+            "uninvertible": false
         },
         {
             "name": "name",
