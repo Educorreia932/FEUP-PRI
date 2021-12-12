@@ -166,104 +166,119 @@
             "type": "genericText",
             "indexed": false,
             "stored": false,
-            "uninvertible": false
+            "uninvertible": false,
+            "required": true
         },
         {
             "name": "name",
             "type": "trackName",
             "indexed": true,
-            "uninvertible": false
+            "uninvertible": false,
+            "required": true
         },
         {
             "name": "lyrics",
             "type": "trackLyrics",
             "indexed": true,
             "stored": true,
-            "uninvertible": false
+            "uninvertible": false,
+            "required": true
         },
         {
             "name": "duration_ms",
             "type": "int",
             "indexed": true,
             "stored": true,
-            "uninvertible": false
+            "uninvertible": false,
+            "required": true
         },
         {
             "name": "acousticness",
             "type": "float",
             "indexed": true,
             "stored": true,
-            "uninvertible": false
+            "uninvertible": false,
+            "required": true
         },
         {
             "name": "danceability",
             "type": "float",
             "indexed": true,
             "stored": true,
-            "uninvertible": false
+            "uninvertible": false,
+            "required": true
         },
         {
             "name": "energy",
             "type": "float",
             "indexed": true,
             "stored": true,
-            "uninvertible": false
+            "uninvertible": false,
+            "required": true
         },
         {
             "name": "instrumentalness",
             "type": "float",
             "indexed": true,
             "stored": true,
-            "uninvertible": false
+            "uninvertible": false,
+            "required": true
         },
         {
             "name": "liveness",
             "type": "float",
             "indexed": true,
             "stored": true,
-            "uninvertible": false
+            "uninvertible": false,
+            "required": true
         },
         {
             "name": "loudness",
             "type": "float",
             "indexed": true,
             "stored": true,
-            "uninvertible": false
+            "uninvertible": false,
+            "required": true
         },
         {
             "name": "mode",
             "type": "bool",
             "indexed": true,
             "stored": true,
-            "uninvertible": false
+            "uninvertible": false,
+            "required": true
         },
         {
             "name": "valence",
             "type": "float",
             "indexed": true,
             "stored": true,
-            "uninvertible": false
+            "uninvertible": false,
+            "required": true
         },
         {
             "name": "speechiness",
             "type": "float",
             "indexed": true,
             "stored": true,
-            "uninvertible": false
+            "uninvertible": false,
+            "required": true
         },
         {
             "name": "tempo",
             "type": "float",
             "indexed": true,
             "stored": true,
-            "uninvertible": false
+            "uninvertible": false,
+            "required": true
         },
         {
             "name": "time_signature",
             "type": "int",
             "indexed": true,
             "stored": true,
-            "uninvertible": false
+            "uninvertible": false,
+            "required": true
         },
         {
             "name": "artists.popularity",
