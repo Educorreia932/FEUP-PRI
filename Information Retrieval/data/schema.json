@@ -1,16 +1,16 @@
 {
     "add-field-type": [
         {
-            "name":"int",
-            "class":"solr.IntPointField"
+            "name": "int",
+            "class": "solr.IntPointField"
         },
         {
-            "name":"float",
-            "class":"solr.FloatPointField"
+            "name": "float",
+            "class": "solr.FloatPointField"
         },
         {
-            "name":"bool",
-            "class":"solr.BoolField"
+            "name": "bool",
+            "class": "solr.BoolField"
         },
         {
             "name": "genericText",
@@ -281,6 +281,14 @@
             "stored": true,
             "uninvertible": false,
             "required": true
+        },
+        {
+            "name": "explicit",
+            "type": "bool",
+            "indexed": true,
+            "stored": true,
+            "uninvertible": false,
+            "multiValued": true
         },
         {
             "name": "artists.popularity",

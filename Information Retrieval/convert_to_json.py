@@ -81,4 +81,4 @@ for track in tqdm(tracks):
 
 # Save file
 with open(os.path.dirname(__file__) + "/data/database.json", "w") as json_file:
-    json.dump(tracks, json_file, default=json_serial)
+    json.dump(tracks, json_file, default=json_serial, indent=4)
