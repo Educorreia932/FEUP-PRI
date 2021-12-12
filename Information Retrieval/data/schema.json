@@ -121,6 +121,9 @@
                     },
                     {
                         "class": "solr.HyphenatedWordsFilterFactory"
+                    },
+                    {
+                        "class": "solr.PorterStemFilterFactory"
                     }
                 ]
             },
@@ -148,6 +151,9 @@
                     },
                     {
                         "class": "solr.HyphenatedWordsFilterFactory"
+                    },
+                    {
+                        "class": "solr.PorterStemFilterFactory"
                     }
                 ]
             }
