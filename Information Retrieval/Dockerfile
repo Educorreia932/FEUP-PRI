@@ -7,4 +7,4 @@ COPY data/synonyms.txt /data/synonyms.txt
 
 COPY startup.sh /scripts/startup.sh
 
-ENTRYPOINT ["/scripts/startup.sh"]
+ENTRYPOINT [ "/scripts/startup.sh" ]

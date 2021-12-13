@@ -2,6 +2,7 @@ from peewee import *
 
 db = SqliteDatabase(None)
 
+
 class BaseModel(Model):
     class Meta:
         database = db
@@ -29,6 +30,7 @@ class Artist(BaseModel):
     name = CharField()
     popularity = IntegerField()
     genres = ManyToManyField(Genre, backref="artists")
+    explicit = IntegerField()
 
 
 class Album(BaseModel):
@@ -38,13 +40,14 @@ class Album(BaseModel):
     release_date = DateField()
     total_tracks = IntegerField()
     artists = ManyToManyField(Artist, backref="albums")
+    explicit = IntegerField()
 
 
 class Track(BaseModel):
     uri = CharField(unique=True)
     name = CharField()
     duration_ms = IntegerField()
-    lyrics = CharField(null = True)
+    lyrics = CharField(null=True)
     artists = ManyToManyField(Artist, backref="tracks")
     albums = ManyToManyField(Album, backref="tracks")
     acousticness = FloatField()
@@ -58,3 +61,4 @@ class Track(BaseModel):
     tempo = FloatField()
     time_signature = IntegerField()
     valence = FloatField()
+    explicit = IntegerField()
