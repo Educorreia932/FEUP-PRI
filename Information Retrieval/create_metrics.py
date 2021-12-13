@@ -12,7 +12,6 @@ relevant_list_attribute = "name"
 
 # Read qrels to extract relevant documents
 relevant = list(map(lambda el: el.strip(), open(QRELS_FILE).readlines()))
-print(relevant)
 # Get query results from Solr instance
 results = requests.get(QUERY_URL).json()['response']['docs']
 
@@ -55,8 +54,8 @@ def f_score(results, relevant, n=10):
             doc 
             for doc in results
             if doc[relevant_list_attribute] in relevant
-        ]) / len(doc 
-            for doc in results)
+        ]) / len([doc 
+            for doc in results])
     recall = len([
             doc 
             for doc in results
