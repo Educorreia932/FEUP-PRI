@@ -52,7 +52,7 @@ def recall(results, relevant):
     return recall
 
 @metric
-def f_score(results, relevant, n=10):
+def f_score(results, relevant):
     precision = len([
             doc 
             for doc in results
@@ -63,7 +63,9 @@ def f_score(results, relevant, n=10):
             doc 
             for doc in results
             if doc[relevant_list_attribute] in relevant
-        ]) / len(relevant) 
+        ]) / len(relevant)
+    if precision + recall == 0:
+        return 0
     return (2 * precision * recall) / (precision + recall)
 
 
