@@ -13,7 +13,7 @@
             "class": "solr.BoolField"
         },
         {
-            "name": "genericText",
+            "name": "generic_text",
             "class": "solr.TextField",
             "indexAnalyzer": {
                 "tokenizer": {
@@ -45,7 +45,7 @@
             }
         },
         {
-            "name": "trackName",
+            "name": "name",
             "class": "solr.TextField",
             "indexAnalyzer": {
                 "tokenizer": {
@@ -95,7 +95,7 @@
             }
         },
         {
-            "name": "trackLyrics",
+            "name": "track_lyrics",
             "class": "solr.TextField",
             "indexAnalyzer": {
                 "tokenizer": {
@@ -168,30 +168,26 @@
                     }
                 ]
             }
-        },
-        {
-            "name": "artistName",
-            "class": "solr.TextField"
         }
     ],
     "add-field": [
         {
             "name": "uri",
-            "type": "genericText",
+            "type": "generic_text",
             "indexed": false,
             "stored": false,
             "uninvertible": false
         },
         {
             "name": "name",
-            "type": "trackName",
+            "type": "name",
             "indexed": true,
             "uninvertible": false,
             "required": true
         },
         {
             "name": "lyrics",
-            "type": "trackLyrics",
+            "type": "track_lyrics",
             "indexed": true,
             "stored": true,
             "uninvertible": false,
@@ -311,7 +307,7 @@
         },
         {
             "name": "artists.uri",
-            "type": "genericText",
+            "type": "generic_text",
             "indexed": false,
             "stored": false,
             "uninvertible": false,
@@ -319,7 +315,7 @@
         },
         {
             "name": "artists.name",
-            "type": "trackName",
+            "type": "name",
             "indexed": true,
             "stored": true,
             "uninvertible": false,
@@ -327,7 +323,7 @@
         },
         {
             "name": "artists.genres",
-            "type": "genericText",
+            "type": "generic_text",
             "indexed": true,
             "stored": true,
             "uninvertible": false,
@@ -335,7 +331,7 @@
         },
         {
             "name": "albums.uri",
-            "type": "genericText",
+            "type": "generic_text",
             "indexed": false,
             "stored": false,
             "uninvertible": false,
@@ -343,7 +339,7 @@
         },
         {
             "name": "albums.name",
-            "type": "trackName",
+            "type": "name",
             "indexed": true,
             "stored": true,
             "uninvertible": false,
@@ -351,7 +347,7 @@
         },
         {
             "name": "albums.album_type",
-            "type": "genericText",
+            "type": "generic_text",
             "indexed": true,
             "stored": true,
             "uninvertible": false,
@@ -359,7 +355,7 @@
         },
         {
             "name": "albums.release_date",
-            "type": "genericText",
+            "type": "generic_text",
             "indexed": true,
             "stored": true,
             "uninvertible": false,
@@ -375,7 +371,7 @@
         },
         {
             "name": "albums.artists.uri",
-            "type": "genericText",
+            "type": "generic_text",
             "indexed": false,
             "stored": false,
             "uninvertible": false,
@@ -383,7 +379,7 @@
         },
         {
             "name": "albums.artists.name",
-            "type": "trackName",
+            "type": "name",
             "indexed": true,
             "stored": true,
             "uninvertible": false,

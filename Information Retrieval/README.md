@@ -1,8 +1,8 @@
 ## How to run
 
 ```shell
-docker build -t elastic-search . 
-docker run -p 8983:8983 -t -i elastic-search
+docker build -t solr:latest . 
+docker run --rm -p 8983:8983 -t -i solr:latest
 ```
 
 To check a container's ID.
