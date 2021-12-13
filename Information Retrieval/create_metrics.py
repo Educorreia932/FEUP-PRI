@@ -39,13 +39,41 @@ def p10(results, relevant, n=10):
     """Precision at N"""
     return len([doc for doc in results[:n] if doc[relevant_list_attribute] in relevant])/n
 
+@metric
+def recall(results, relevant):
+    """Average Recall"""
+    recall = len([
+            doc 
+            for doc in results
+            if doc[relevant_list_attribute] in relevant
+        ]) / len(relevant) 
+    return recall
+
+@metric
+def f_score(results, relevant, n=10):
+    precision = len([
+            doc 
+            for doc in results
+            if doc[relevant_list_attribute] in relevant
+        ]) / len(doc 
+            for doc in results)
+    recall = len([
+            doc 
+            for doc in results
+            if doc[relevant_list_attribute] in relevant
+        ]) / len(relevant) 
+    return (2 * precision * recall) / (precision + recall)
+
+
 def calculate_metric(key, results, relevant):
     return metrics[key](results, relevant)
 
 # Define metrics to be calculated
 evaluation_metrics = {
     'ap': 'Average Precision',
-    'p10': 'Precision at 10 (P@10)'
+    'p10': 'Precision at 10 (P@10)',
+    'recall': 'Recall',
+    'f_score': 'F-score/F-measure'
 }
 
 # Calculate all metrics and export results as LaTeX table

@@ -110,6 +110,13 @@
                         "class": "solr.LowerCaseFilterFactory"
                     },
                     {
+                        "class": "solr.SynonymGraphFilterFactory",
+                        "synonyms": "/var/solr/data/music/synonyms.txt"
+                    },
+                    {
+                        "class": "solr.FlattenGraphFilterFactory"
+                    },
+                    {
                         "class": "solr.StopFilterFactory",
                         "ignoreCase": true
                     },
@@ -138,6 +145,10 @@
                     },
                     {
                         "class": "solr.LowerCaseFilterFactory"
+                    },
+                    {
+                        "class": "solr.SynonymGraphFilterFactory",
+                        "synonyms": "/var/solr/data/music/synonyms.txt"
                     },
                     {
                         "class": "solr.StopFilterFactory",
