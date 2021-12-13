@@ -63,7 +63,7 @@
         {
             "name": "duration_ms",
             "type": "int",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "required": true
@@ -71,7 +71,7 @@
         {
             "name": "acousticness",
             "type": "float",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "required": true
@@ -79,7 +79,7 @@
         {
             "name": "danceability",
             "type": "float",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "required": true
@@ -87,7 +87,7 @@
         {
             "name": "energy",
             "type": "float",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "required": true
@@ -95,7 +95,7 @@
         {
             "name": "instrumentalness",
             "type": "float",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "required": true
@@ -103,7 +103,7 @@
         {
             "name": "liveness",
             "type": "float",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "required": true
@@ -111,7 +111,7 @@
         {
             "name": "loudness",
             "type": "float",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "required": true
@@ -119,7 +119,7 @@
         {
             "name": "mode",
             "type": "bool",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "required": true
@@ -127,7 +127,7 @@
         {
             "name": "valence",
             "type": "float",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "required": true
@@ -135,7 +135,7 @@
         {
             "name": "speechiness",
             "type": "float",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "required": true
@@ -143,7 +143,7 @@
         {
             "name": "tempo",
             "type": "float",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "required": true
@@ -151,7 +151,7 @@
         {
             "name": "time_signature",
             "type": "int",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "required": true
@@ -167,7 +167,7 @@
         {
             "name": "artists.popularity",
             "type": "float",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "multiValued": true
@@ -191,7 +191,7 @@
         {
             "name": "artists.genres",
             "type": "text",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "multiValued": true
@@ -215,7 +215,7 @@
         {
             "name": "albums.album_type",
             "type": "text",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "multiValued": true
@@ -223,7 +223,7 @@
         {
             "name": "albums.release_date",
             "type": "text",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "multiValued": true
@@ -231,7 +231,7 @@
         {
             "name": "albums.total_tracks",
             "type": "int",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "multiValued": true
@@ -255,7 +255,7 @@
         {
             "name": "albums.artists.popularity",
             "type": "int",
-            "indexed": true,
+            "indexed": false,
             "stored": true,
             "uninvertible": false,
             "multiValued": true
