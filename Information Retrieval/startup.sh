@@ -11,7 +11,7 @@ cp /data/synonyms.txt /var/solr/data/music/synonyms.txt
 
 # Send schema
 curl -X POST -H 'Content-type:application/json' \
-    --data-binary @/data/schema_without_filters.json \
+    --data-binary @/data/schema.json \
     http://localhost:8983/solr/music/schema
 
 sleep 1

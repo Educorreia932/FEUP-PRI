@@ -14,7 +14,27 @@
         },
         {
             "name": "text",
-            "class": "solr.TextField"
+            "class": "solr.TextField",
+            "indexAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters": [
+                    {
+                        "class": "solr.LowerCaseFilterFactory"
+                    }
+                ]
+            },
+            "queryAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters": [
+                    {
+                        "class": "solr.LowerCaseFilterFactory"
+                    }
+                ]
+            }
         }
     ],
     "add-field": [
