@@ -23,4 +23,4 @@ help => aid, assist, support, encourage, back, wait on, attend, serve, relieve, 
 mark => label, tag, price, ticket, impress, effect, trace, imprint, stamp, brand, sign, note, heed, notice, designate
 plan => plot, scheme, design, draw, map, diagram, procedure, arrangement, intention, device, contrivance, method, way, blueprint
 show => display, exhibit, present, note, point to, indicate, explain, reveal, prove, demonstrate, expose
-love => like, adore
+love => like, adore, passion

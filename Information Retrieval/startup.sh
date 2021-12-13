@@ -5,7 +5,7 @@ precreate-core music
 # Start Solr in background mode so we can use the API to upload the schema
 solr start
 
-sleep 5
+sleep 1
 
 cp /data/synonyms.txt /var/solr/data/music/synonyms.txt
 

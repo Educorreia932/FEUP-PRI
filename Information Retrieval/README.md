@@ -1,3 +1,5 @@
+# Information Retrieval
+
 ## How to run
 
 ```shell
@@ -16,4 +18,3 @@ To execute a command.
 ```shell
 docker exec <container_id> <command>
 ```
-

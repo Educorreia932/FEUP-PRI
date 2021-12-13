@@ -23,9 +23,7 @@ TrackAlbum = Track.albums.get_through_model()
 AlbumArtist = Album.artists.get_through_model()
 ArtistGenre = Artist.genres.get_through_model()
 
-MAX_TRACKS = 250
-
-tracks = list(Track.select().dicts().execute()[:MAX_TRACKS])
+tracks = list(Track.select().dicts().execute())
 
 # Iterate over tracks
 for track in tqdm(tracks):

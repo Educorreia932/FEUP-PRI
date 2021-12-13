@@ -95,7 +95,7 @@
             }
         },
         {
-            "name": "track_lyrics",
+            "name": "lyrics",
             "class": "solr.TextField",
             "indexAnalyzer": {
                 "tokenizer": {
@@ -110,18 +110,11 @@
                         "class": "solr.LowerCaseFilterFactory"
                     },
                     {
-                        "class": "solr.SynonymGraphFilterFactory",
-                        "synonyms": "/var/solr/data/music/synonyms.txt"
-                    },
-                    {
                         "class": "solr.FlattenGraphFilterFactory"
                     },
                     {
                         "class": "solr.StopFilterFactory",
                         "ignoreCase": true
-                    },
-                    {
-                        "class": "solr.ClassicFilterFactory"
                     },
                     {
                         "class": "solr.ClassicFilterFactory"
@@ -158,9 +151,6 @@
                         "class": "solr.ClassicFilterFactory"
                     },
                     {
-                        "class": "solr.ClassicFilterFactory"
-                    },
-                    {
                         "class": "solr.HyphenatedWordsFilterFactory"
                     },
                     {
@@ -187,7 +177,7 @@
         },
         {
             "name": "lyrics",
-            "type": "track_lyrics",
+            "type": "lyrics",
             "indexed": true,
             "stored": true,
             "uninvertible": false,
@@ -300,7 +290,7 @@
         {
             "name": "artists.popularity",
             "type": "float",
-            "indexed": false,
+            "indexed": true,
             "stored": true,
             "uninvertible": false,
             "multiValued": true
@@ -323,8 +313,8 @@
         },
         {
             "name": "artists.genres",
-            "type": "generic_text",
-            "indexed": false,
+            "type": "name",
+            "indexed": true,
             "stored": true,
             "uninvertible": false,
             "multiValued": true
