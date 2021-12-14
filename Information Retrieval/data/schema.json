@@ -87,9 +87,6 @@
                     },
                     {
                         "class": "solr.CommonGramsFilterFactory"
-                    },
-                    {
-                        "class": "solr.HyphenatedWordsFilterFactory"
                     }
                 ]
             }
@@ -110,14 +107,11 @@
                         "class": "solr.LowerCaseFilterFactory"
                     },
                     {
-                        "class": "solr.FlattenGraphFilterFactory"
+                        "class": "solr.EnglishPossessiveFilterFactory"
                     },
                     {
                         "class": "solr.StopFilterFactory",
                         "ignoreCase": true
-                    },
-                    {
-                        "class": "solr.ClassicFilterFactory"
                     },
                     {
                         "class": "solr.HyphenatedWordsFilterFactory"
@@ -140,18 +134,15 @@
                         "class": "solr.LowerCaseFilterFactory"
                     },
                     {
+                        "class": "solr.EnglishPossessiveFilterFactory"
+                    },
+                    {
                         "class": "solr.SynonymGraphFilterFactory",
                         "synonyms": "/var/solr/data/music/synonyms.txt"
                     },
                     {
                         "class": "solr.StopFilterFactory",
                         "ignoreCase": true
-                    },
-                    {
-                        "class": "solr.ClassicFilterFactory"
-                    },
-                    {
-                        "class": "solr.HyphenatedWordsFilterFactory"
                     },
                     {
                         "class": "solr.PorterStemFilterFactory"
