@@ -13,6 +13,10 @@
             "class": "solr.BoolField"
         },
         {
+            "name": "date",
+            "class": "solr.DateRangeField"
+        },
+        {
             "name": "generic_text",
             "class": "solr.TextField",
             "indexAnalyzer": {
@@ -336,8 +340,8 @@
         },
         {
             "name": "albums.release_date",
-            "type": "generic_text",
-            "indexed": false,
+            "type": "date",
+            "indexed": true,
             "stored": true,
             "uninvertible": false,
             "multiValued": true

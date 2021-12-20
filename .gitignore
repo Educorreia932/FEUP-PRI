@@ -11,4 +11,4 @@ __pycache__/
 # Database files
 *.db
 
-Information Retrieval/data/database.json
+database.json
