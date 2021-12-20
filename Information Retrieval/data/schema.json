@@ -17,6 +17,13 @@
             "class": "solr.DateRangeField"
         },
         {
+            "name": "album_type",
+            "class": "solr.EnumFieldType",
+            "docValues": true,
+            "enumsConfig": "enumsConfig.xml",
+            "enumName": "album_type"
+        },
+        {
             "name": "generic_text",
             "class": "solr.TextField",
             "indexAnalyzer": {
@@ -332,8 +339,8 @@
         },
         {
             "name": "albums.album_type",
-            "type": "generic_text",
-            "indexed": false,
+            "type": "album_type",
+            "indexed": true,
             "stored": true,
             "uninvertible": false,
             "multiValued": true

@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<enumsConfig>
+    <enum name="album_type">
+        <value>Album</value>
+        <value>Single</value>
+        <value>Compilation</value>
+    </enum>
+</enumsConfig>
