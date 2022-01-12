@@ -9,7 +9,6 @@ sleep 1
 
 cp /data/synonyms.txt /var/solr/data/music/synonyms.txt
 cp /data/enumsConfig.xml /var/solr/data/music/enumsConfig.xml
-#cp /data/web.xml /opt/solr-8.10.1/server/solr-webapp/webapp/WEB-INF/web.xml
 
 # Send schema
 curl -X POST -H 'Content-type:application/json' \

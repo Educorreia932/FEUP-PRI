@@ -190,6 +190,17 @@
                         "class": "solr.EnglishPossessiveFilterFactory"
                     },
                     {
+                        "class": "solr.LengthFilterFactory",
+                        "min": 3,
+                        "max": 99999
+                    },
+                    {
+                        "class": "solr.SynonymGraphFilterFactory",
+                        "synonyms": "/var/solr/data/music/synonyms.txt",
+                        "expand": true,
+                        "ignoreCase": true
+                    },
+                    {
                         "class": "solr.StopFilterFactory",
                         "ignoreCase": true
                     },
@@ -202,6 +213,9 @@
                     },
                     {
                         "class": "solr.PorterStemFilterFactory"
+                    },
+                    {
+                        "class": "solr.RemoveDuplicatesTokenFilterFactory"
                     }
                 ]
             },
@@ -221,8 +235,15 @@
                         "class": "solr.EnglishPossessiveFilterFactory"
                     },
                     {
+                        "class": "solr.LengthFilterFactory",
+                        "min": 3,
+                        "max": 99999
+                    },
+                    {
                         "class": "solr.SynonymGraphFilterFactory",
-                        "synonyms": "/var/solr/data/music/synonyms.txt"
+                        "synonyms": "/var/solr/data/music/synonyms.txt",
+                        "expand": true,
+                        "ignoreCase": true
                     },
                     {
                         "class": "solr.StopFilterFactory",
@@ -234,6 +255,9 @@
                     },
                     {
                         "class": "solr.PorterStemFilterFactory"
+                    },
+                    {
+                        "class": "solr.RemoveDuplicatesTokenFilterFactory"
                     }
                 ]
             }
