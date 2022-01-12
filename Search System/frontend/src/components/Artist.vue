@@ -24,7 +24,7 @@
 					<div>
 						<v-icon class="mr-1">mdi-podium</v-icon>
 
-						<span>{{ artist.popularity }}</span>
+						<span>{{ artist.popularity }}/100</span>
 					</div>
 				</v-card-text>
 			</div>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import {getArtwork} from "@/api/spotify";
+import {getArtwork} from "@/api/Spotify";
 
 export default {
 	name: "Artist",

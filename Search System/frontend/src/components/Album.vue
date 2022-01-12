@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import {getArtwork} from "@/api/spotify";
+import {getArtwork} from "@/api/Spotify";
 
 export default {
 	name: "album",

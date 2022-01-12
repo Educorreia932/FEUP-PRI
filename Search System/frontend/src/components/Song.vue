@@ -13,7 +13,7 @@
 
 					<v-spacer></v-spacer>
 
-					<v-icon v-if="track.explicit">
+					<v-icon v-if="track.explicit[0]">
 						mdi-alpha-e-box
 					</v-icon>
 
@@ -27,7 +27,9 @@
 				</v-card-title>
 
 				<v-card-subtitle>
-					Britney Spears
+					<span v-for="(artist_name, i) in track['artists.name']" :key="i">
+						<span v-if="i > 0">,</span>
+						{{ artist_name }}</span>
 				</v-card-subtitle>
 
 				<v-card-text>
@@ -49,7 +51,7 @@
 </template>
 
 <script>
-import {getArtwork} from "@/api/spotify";
+import {getArtwork} from "@/api/Spotify";
 
 export default {
 	name: "song",
@@ -63,7 +65,7 @@ export default {
 		}
 	},
 	async created() {
-		this.artwork = await getArtwork("spotify:artist:26dSoYclwsYLMAKD3tpOr4")
+		this.artwork = await getArtwork(this.track["albums.uri"][0])
 	},
 	computed: {
 		duration() {

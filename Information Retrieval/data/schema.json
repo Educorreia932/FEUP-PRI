@@ -56,7 +56,7 @@
             }
         },
         {
-            "name": "artst_name",
+            "name": "artist_name",
             "class": "solr.TextField",
             "indexAnalyzer": {
                 "tokenizer": {
@@ -243,8 +243,8 @@
         {
             "name": "uri",
             "type": "generic_text",
-            "indexed": false,
-            "stored": false,
+            "indexed": true,
+            "stored": true,
             "uninvertible": false
         },
         {
@@ -377,14 +377,14 @@
         {
             "name": "artists.uri",
             "type": "generic_text",
-            "indexed": false,
-            "stored": false,
+            "indexed": true,
+            "stored": true,
             "uninvertible": false,
             "multiValued": true
         },
         {
             "name": "artists.name",
-            "type": "artst_name",
+            "type": "artist_name",
             "indexed": true,
             "stored": true,
             "uninvertible": false,
@@ -401,8 +401,8 @@
         {
             "name": "albums.uri",
             "type": "generic_text",
-            "indexed": false,
-            "stored": false,
+            "indexed": true,
+            "stored": true,
             "uninvertible": false,
             "multiValued": true
         },
@@ -442,14 +442,14 @@
         {
             "name": "albums.artists.uri",
             "type": "generic_text",
-            "indexed": false,
-            "stored": false,
+            "indexed": true,
+            "stored": true,
             "uninvertible": false,
             "multiValued": true
         },
         {
             "name": "albums.artists.name",
-            "type": "artst_name",
+            "type": "artist_name",
             "indexed": true,
             "stored": true,
             "uninvertible": false,
