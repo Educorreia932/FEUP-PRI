@@ -1,7 +1,23 @@
 <template>
-	<v-card>
+	<v-card style="width: 100%;">
 		<v-card-title>
-			{{ this.track.name }}
+			<span class="mr-1">{{ track.name }}</span>
+
+			<v-icon>mdi-music-note</v-icon>
+
+			<v-spacer></v-spacer>
+
+			<v-icon v-if="track.explicit">
+				mdi-alpha-e-box
+			</v-icon>
+
+			<v-btn
+				depressed
+				icon
+				@click="show = !show"
+			>
+				<v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+			</v-btn>
 		</v-card-title>
 
 		<v-card-subtitle>
@@ -9,15 +25,17 @@
 		</v-card-subtitle>
 
 		<v-card-text>
-			<p>{{ duration }}</p>
+			<div>
+				<v-icon class="mr-1">mdi-clock-outline</v-icon>
 
-			<span v-if="track.explicit">
-					<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-						<path d="M0 0h24v24H0z" fill="none"/>
-						<path
-							d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4 6h-4v2h4v2h-4v2h4v2H9V7h6v2z"/>
-					</svg>
-				</span>
+				<span>{{ duration }}</span>
+			</div>
+
+			<v-expand-transition>
+				<p class="lyrics mt-4" v-show="show">
+					{{ track.lyrics }}
+				</p>
+			</v-expand-transition>
 		</v-card-text>
 	</v-card>
 </template>
@@ -28,6 +46,11 @@ export default {
 	props: [
 		"track"
 	],
+	data() {
+		return {
+			show: false
+		}
+	},
 	computed: {
 		duration() {
 			const minutes = Math.floor(this.track.duration_ms / 60000);
@@ -40,5 +63,7 @@ export default {
 </script>
 
 <style scoped>
-
+.lyrics {
+	white-space: pre-line;
+}
 </style>

@@ -6,14 +6,16 @@
 			<v-checkbox label="Explicit"></v-checkbox>
 
 			<v-list>
-				<v-checkbox label="Album"></v-checkbox>
-				<v-checkbox label="Artist"></v-checkbox>
-				<v-checkbox label="Track"></v-checkbox>
+				<v-checkbox label="Album" v-model="checkbox"></v-checkbox>
+				<v-checkbox label="Artist" v-model="checkbox"></v-checkbox>
+				<v-checkbox label="Track" v-model="checkbox"></v-checkbox>
 			</v-list>
 
-			<!--			<v-date-picker></v-date-picker>-->
-			<v-slider label="Track duration"></v-slider>
-			<v-slider label="Artist popularity"></v-slider>
+			<v-subheader>Track duration</v-subheader>
+			<v-slider></v-slider>
+
+			<v-subheader>Artist popularity</v-subheader>
+			<v-slider></v-slider>
 		</v-navigation-drawer>
 
 		<v-main>
@@ -23,14 +25,16 @@
 				</v-form>
 
 				<v-list>
-					<v-list-item v-for="track of tracks" :key="track.uri">
-						<v-list-item-content>
-							<song :track="track" class="mb-4"/>
-						</v-list-item-content>
+					<v-list-item v-for="track of tracks" :key="track.uri" class="mb-4" style="width: 35em;">
+						<song :track="track"/>
 					</v-list-item>
 
-					<v-list-item>
+					<v-list-item class="mb-4" style="width: 35em;">
 						<artist :artist="artist"></artist>
+					</v-list-item>
+
+					<v-list-item class="mb-4" style="width: 35em;">
+						<album :album="album"></album>
 					</v-list-item>
 				</v-list>
 			</v-container>
@@ -45,14 +49,16 @@
 import axios from 'axios'
 import Song from "@/components/Song";
 import Artist from "@/components/Artist";
+import Album from "@/components/Album";
 
 export default {
 	setup() {
 
 	},
 	components: {
+		"album": Album,
+		"artist": Artist,
 		"song": Song,
-		"artist": Artist
 	},
 	data() {
 		return {
@@ -86,7 +92,16 @@ export default {
 					"pop",
 					"post-teen pop"
 				]
-			}
+			},
+			album: {
+				"uri": "spotify:album:0z7pVBGOD7HCIB7S8eLkLI",
+				"name": "In The Zone",
+				"album_type": "album",
+				"release_date": "2003-11-13",
+				"total_tracks": 13,
+				"explicit": 0,
+			},
+			checkbox: true
 		}
 	},
 	methods: {
