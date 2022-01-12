@@ -1,6 +1,6 @@
 <template>
 	<v-app>
-		<v-navigation-drawer app class="px-4 py-4">
+		<v-navigation-drawer app class="px-4 py-4" :width="325">
 			<h1>Spot & Find</h1>
 
 			<v-checkbox label="Explicit"></v-checkbox>
@@ -24,6 +24,8 @@
 					<v-text-field label="Search" prepend-inner-icon="mdi-magnify"></v-text-field>
 				</v-form>
 
+				<p>Showing 3 results</p>
+
 				<v-list>
 					<v-list-item v-for="track of tracks" :key="track.uri" class="mb-4" style="width: 35em;">
 						<song :track="track"/>
@@ -37,6 +39,8 @@
 						<album :album="album"></album>
 					</v-list-item>
 				</v-list>
+
+				<v-pagination v-model="page" :length="1"></v-pagination>
 			</v-container>
 		</v-main>
 	</v-app>
@@ -52,9 +56,6 @@ import Artist from "@/components/Artist";
 import Album from "@/components/Album";
 
 export default {
-	setup() {
-
-	},
 	components: {
 		"album": Album,
 		"artist": Artist,
@@ -101,7 +102,8 @@ export default {
 				"total_tracks": 13,
 				"explicit": 0,
 			},
-			checkbox: true
+			checkbox: true,
+			page: 1
 		}
 	},
 	methods: {

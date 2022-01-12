@@ -1,46 +1,56 @@
 <template>
 	<v-card style="width: 100%;">
-		<v-card-title>
-			<span class="mr-1">{{ track.name }}</span>
+		<div class="d-flex flex-no-wrap">
+			<v-avatar tile size="100" class="rounded my-3 ml-3">
+				<v-img :src="artwork"></v-img>
+			</v-avatar>
 
-			<v-icon>mdi-music-note</v-icon>
+			<div class="flex-grow-1">
+				<v-card-title>
+					<span class="mr-1">{{ track.name }}</span>
 
-			<v-spacer></v-spacer>
+					<v-icon>mdi-music-note</v-icon>
 
-			<v-icon v-if="track.explicit">
-				mdi-alpha-e-box
-			</v-icon>
+					<v-spacer></v-spacer>
 
-			<v-btn
-				depressed
-				icon
-				@click="show = !show"
-			>
-				<v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-			</v-btn>
-		</v-card-title>
+					<v-icon v-if="track.explicit">
+						mdi-alpha-e-box
+					</v-icon>
 
-		<v-card-subtitle>
-			Britney Spears
-		</v-card-subtitle>
+					<v-btn
+						depressed
+						icon
+						@click="show = !show"
+					>
+						<v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+					</v-btn>
+				</v-card-title>
 
-		<v-card-text>
-			<div>
-				<v-icon class="mr-1">mdi-clock-outline</v-icon>
+				<v-card-subtitle>
+					Britney Spears
+				</v-card-subtitle>
 
-				<span>{{ duration }}</span>
+				<v-card-text>
+					<div>
+						<v-icon class="mr-1">mdi-clock-outline</v-icon>
+
+						<span>{{ duration }}</span>
+					</div>
+
+					<v-expand-transition>
+						<p class="lyrics mt-4" v-show="show">
+							{{ track.lyrics }}
+						</p>
+					</v-expand-transition>
+				</v-card-text>
 			</div>
-
-			<v-expand-transition>
-				<p class="lyrics mt-4" v-show="show">
-					{{ track.lyrics }}
-				</p>
-			</v-expand-transition>
-		</v-card-text>
+		</div>
 	</v-card>
 </template>
 
 <script>
+import {getArtwork} from "@/api/spotify";
+
 export default {
 	name: "song",
 	props: [
@@ -48,8 +58,12 @@ export default {
 	],
 	data() {
 		return {
-			show: false
+			show: false,
+			artwork: ""
 		}
+	},
+	async created() {
+		this.artwork = await getArtwork("spotify:artist:26dSoYclwsYLMAKD3tpOr4")
 	},
 	computed: {
 		duration() {
@@ -59,6 +73,7 @@ export default {
 			return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 		}
 	},
+
 }
 </script>
 
