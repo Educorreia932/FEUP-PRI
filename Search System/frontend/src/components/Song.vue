@@ -13,7 +13,7 @@
 
 					<v-spacer></v-spacer>
 
-					<v-icon v-if="track.explicit[0]">
+					<v-icon v-if="track.explicit">
 						mdi-alpha-e-box
 					</v-icon>
 

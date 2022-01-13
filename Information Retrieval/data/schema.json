@@ -363,12 +363,11 @@
             "type": "bool",
             "indexed": true,
             "stored": true,
-            "uninvertible": false,
-            "multiValued": true
+            "uninvertible": false
         },
         {
             "name": "artists.popularity",
-            "type": "float",
+            "type": "int",
             "indexed": true,
             "stored": true,
             "uninvertible": false,

@@ -1,5 +1,9 @@
 import axios from "axios";
 
-export async function search() {
-	return axios.get("http://localhost:8983/solr/music/query?q=*:*")
+const API = () => {
+	return axios.create({
+		baseURL: "http://localhost:8983/solr/music/",
+	})
 }
+
+export default API

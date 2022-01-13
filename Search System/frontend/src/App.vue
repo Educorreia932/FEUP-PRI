@@ -3,19 +3,27 @@
 		<v-navigation-drawer app class="px-4 py-4" :width="325">
 			<h1>Spot & Find</h1>
 
-			<v-checkbox label="Explicit"></v-checkbox>
+			<v-checkbox label="Explicit" v-model="explicit"></v-checkbox>
 
-			<v-list>
-				<v-checkbox label="Album" v-model="checkbox"></v-checkbox>
-				<v-checkbox label="Artist" v-model="checkbox"></v-checkbox>
-				<v-checkbox label="Track" v-model="checkbox"></v-checkbox>
-			</v-list>
+			<v-subheader>Searching by</v-subheader>
+
+			<v-radio-group v-model="searchingBy">
+				<v-radio
+					v-for="docType in ['Album', 'Artist', 'Track']"
+					:key="docType"
+					:label="docType"
+					:value="docType"
+				>
+				</v-radio>
+			</v-radio-group>
 
 			<v-subheader>Track duration</v-subheader>
-			<v-slider></v-slider>
+
+			<v-range-slider></v-range-slider>
 
 			<v-subheader>Artist popularity</v-subheader>
-			<v-slider></v-slider>
+
+			<v-range-slider></v-range-slider>
 		</v-navigation-drawer>
 
 		<v-main>
@@ -28,7 +36,9 @@
 
 				<v-list>
 					<v-list-item v-for="track of results" :key="track.uri" class="mb-4" style="width: 35em;">
-						<song :track="track"/>
+						<album v-if="searchingBy === 'Album'" :album="{}"/>
+						<artist v-if="searchingBy === 'Artist'" :artist="{}"/>
+						<song v-if="searchingBy === 'Track'" :track="track"/>
 					</v-list-item>
 				</v-list>
 
@@ -42,25 +52,28 @@
 </style>
 
 <script>
+import Artist from "@/components/Artist";
+import Album from "@/components/Album";
 import Song from "@/components/Song";
-import {search} from "@/api/API";
+import Tracks from "@/api/Tracks";
 
 export default {
 	components: {
+		"artist": Artist,
+		"album": Album,
 		"song": Song,
 	},
 	data() {
 		return {
 			results: [],
-			checkbox: true,
-			page: 1
+			page: 1,
+			explicit: true,
+			searchingBy: "Track"
 		}
 	},
 	created() {
-		search().then((response) => {
-			this.results = response.data.response.docs
-
-			console.log(this.results)
+		Tracks.list().then((results) => {
+			this.results = results;
 		})
 	}
 }
