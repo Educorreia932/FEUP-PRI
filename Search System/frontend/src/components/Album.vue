@@ -24,7 +24,7 @@
 					<div>
 						<v-icon class="mr-1">mdi-calendar</v-icon>
 
-						<span>{{ album.release_date }}</span>
+						<span>{{ release_date }}</span>
 					</div>
 				</v-card-text>
 			</div>
@@ -42,7 +42,12 @@ export default {
 	],
 	data() {
 		return {
-			artwork: ""
+			artwork: "",
+			release_date: new Date(this.album.release_date).toLocaleString("pt-PT", {
+				day: "2-digit",
+				month: "2-digit",
+				year: "numeric",
+			})
 		}
 	},
 	async created() {

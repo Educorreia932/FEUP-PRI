@@ -28,16 +28,22 @@
 
 		<v-main>
 			<v-container fluid>
-				<v-form>
-					<v-text-field label="Search" prepend-inner-icon="mdi-magnify"></v-text-field>
+				<v-form @submit.prevent="retrieveResults(searchTerms)">
+					<v-text-field
+						label="Search"
+						prepend-inner-icon="mdi-magnify"
+						v-model="searchTerms"
+					></v-text-field>
 				</v-form>
 
-				<p>Found <span class="primary--text">{{ found }}</span> results</p>
+				<p>
+					Found <span class="primary--text">{{ found }}</span> results
+				</p>
 
 				<v-list>
 					<v-list-item v-for="track of results" :key="track.uri" class="mb-4" style="width: 35em;">
-						<album v-if="searchingBy === 'Album'" :album="{}"/>
-						<artist v-if="searchingBy === 'Artist'" :artist="{}"/>
+						<album v-if="searchingBy === 'Album'" :album="track.albums[0]"/>
+						<artist v-if="searchingBy === 'Artist'" :artist="track.artists[0]"/>
 						<song v-if="searchingBy === 'Track'" :track="track"/>
 					</v-list-item>
 				</v-list>
@@ -75,6 +81,7 @@ export default {
 			page: 1,
 			explicit: true,
 			searchingBy: "Track",
+			searchTerms: ""
 		}
 	},
 	computed: {
@@ -83,8 +90,11 @@ export default {
 		}
 	},
 	methods: {
-		retrieveResults() {
-			Tracks.search((this.page - 1) * this.resultsPerPage).then((response) => {
+		retrieveResults(searchTerms = "*") {
+			console.log(searchTerms)
+			const start = (this.page - 1) * this.resultsPerPage
+
+			Tracks.search(start, searchTerms).then((response) => {
 				this.results = response.docs;
 				this.found = response.found;
 			})

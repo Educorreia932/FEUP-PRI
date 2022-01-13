@@ -21,12 +21,14 @@ Object.unflatten = function (data) {
 };
 
 export default {
-	search(start) {
+	search(start, searchTerms) {
 		return API()
 			.get("query", {
 				params: {
-					q: "*:*",
-					start: start
+					q: searchTerms,
+					defType: "edismax",
+					start: start,
+					qf: "name^5 lyrics^3 artists.name^1 artists.genres albums.name^3",
 				}
 			})
 			.then((response) => {
@@ -54,7 +56,13 @@ export default {
 					doc.artists = fields[0]
 					doc.albums = fields[1]
 
+					doc.albums.artists = []
+
+					for (const artist of doc.artists)
+						doc.albums.artists.push(artist)
+
 					docs[k] = doc;
+
 				})
 
 				return {
