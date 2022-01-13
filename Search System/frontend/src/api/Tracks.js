@@ -21,34 +21,46 @@ Object.unflatten = function (data) {
 };
 
 export default {
-	list() {
-		return API().get("query?q=*:*").then((response) => {
-			const docs = response.data.response.docs;
+	search(start) {
+		return API()
+			.get("query", {
+				params: {
+					q: "*:*",
+					start: start
+				}
+			})
+			.then((response) => {
+				const docs = response.data.response.docs;
 
-			// Iterate over retrieved documents
-			docs.forEach(doc => {
-				doc = Object.unflatten(doc)
-				const fields = [doc.artists, doc.albums]
+				// Iterate over retrieved documents
+				docs.forEach((doc, k) => {
+					doc = Object.unflatten(doc)
+					const fields = [doc.artists, doc.albums]
 
-				fields.forEach((field, i) => {
-					const obj = []
+					fields.forEach((field, i) => {
+						const obj = []
 
-					for (let i = 0; i < field.uri.length; i++)
-						obj.push({})
+						for (let i = 0; i < field.uri.length; i++)
+							obj.push({})
 
-					Object.entries(field).forEach(([key, value]) => {
-						for (let j = 0; j < obj.length; j++)
-							obj[j][key] = value[j]
+						Object.entries(field).forEach(([key, value]) => {
+							for (let j = 0; j < obj.length; j++)
+								obj[j][key] = value[j]
+						})
+
+						fields[i] = obj
 					})
 
-					fields[i] = obj
+					doc.artists = fields[0]
+					doc.albums = fields[1]
+
+					docs[k] = doc;
 				})
 
-				doc.artists = fields[0]
-				doc.albums = fields[1]
+				return {
+					"docs": docs,
+					"found": response.data.response.numFound
+				}
 			})
-
-			return docs
-		})
 	}
 }

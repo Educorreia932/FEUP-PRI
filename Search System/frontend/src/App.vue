@@ -32,7 +32,7 @@
 					<v-text-field label="Search" prepend-inner-icon="mdi-magnify"></v-text-field>
 				</v-form>
 
-				<p>Showing 3 results</p>
+				<p>Found <span class="primary--text">{{ found }}</span> results</p>
 
 				<v-list>
 					<v-list-item v-for="track of results" :key="track.uri" class="mb-4" style="width: 35em;">
@@ -42,7 +42,11 @@
 					</v-list-item>
 				</v-list>
 
-				<v-pagination v-model="page" :length="1"></v-pagination>
+				<v-pagination
+					v-model="page"
+					:length="numPages"
+					:total-visible="7"
+				></v-pagination>
 			</v-container>
 		</v-main>
 	</v-app>
@@ -66,15 +70,33 @@ export default {
 	data() {
 		return {
 			results: [],
+			found: 0,
+			resultsPerPage: 10,
 			page: 1,
 			explicit: true,
-			searchingBy: "Track"
+			searchingBy: "Track",
+		}
+	},
+	computed: {
+		numPages() {
+			return Math.floor(this.found / this.resultsPerPage);
+		}
+	},
+	methods: {
+		retrieveResults() {
+			Tracks.search((this.page - 1) * this.resultsPerPage).then((response) => {
+				this.results = response.docs;
+				this.found = response.found;
+			})
 		}
 	},
 	created() {
-		Tracks.list().then((results) => {
-			this.results = results;
-		})
+		this.retrieveResults();
+	},
+	watch: {
+		page: function () {
+			this.retrieveResults()
+		}
 	}
 }
 </script>

@@ -15,7 +15,9 @@
 				</v-card-title>
 
 				<v-card-subtitle>
-					Britney Spears
+					<span v-for="(artist, i) in album.artists" :key="i">
+						<span v-if="i > 0">,</span>
+						{{ artist.name }}</span>
 				</v-card-subtitle>
 
 				<v-card-text>

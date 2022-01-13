@@ -7,7 +7,7 @@
 
 			<div class="flex-grow-1">
 				<v-card-title>
-					<span class="mr-1">{{ track.name }}</span>
+					<span class="mr-1" style="word-break: break-word">{{ track.name }}</span>
 
 					<v-icon>mdi-music-note</v-icon>
 
@@ -27,9 +27,9 @@
 				</v-card-title>
 
 				<v-card-subtitle>
-					<span v-for="(artist_name, i) in track['artists.name']" :key="i">
+					<span v-for="(artist, i) in track.artists" :key="i">
 						<span v-if="i > 0">,</span>
-						{{ artist_name }}</span>
+						{{ artist.name }}</span>
 				</v-card-subtitle>
 
 				<v-card-text>
@@ -65,7 +65,7 @@ export default {
 		}
 	},
 	async created() {
-		this.artwork = await getArtwork(this.track["albums.uri"][0])
+		this.artwork = await getArtwork(this.track.albums[0].uri)
 	},
 	computed: {
 		duration() {
