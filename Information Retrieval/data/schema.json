@@ -197,7 +197,7 @@
                     {
                         "class": "solr.SynonymGraphFilterFactory",
                         "synonyms": "/var/solr/data/music/synonyms.txt",
-                        "expand": true,
+                        "expand": false,
                         "ignoreCase": true
                     },
                     {
@@ -242,7 +242,7 @@
                     {
                         "class": "solr.SynonymGraphFilterFactory",
                         "synonyms": "/var/solr/data/music/synonyms.txt",
-                        "expand": true,
+                        "expand": false,
                         "ignoreCase": true
                     },
                     {
