@@ -104,6 +104,16 @@
                         "class": "solr.EnglishPossessiveFilterFactory"
                     },
                     {
+                        "class": "solr.SynonymGraphFilterFactory",
+                        "synonyms": "/var/solr/data/music/genreList.txt",
+                        "expand": false,
+                        "ignoreCase": true
+                    },
+                    {
+                        "class": "solr.DelimitedBoostTokenFilterFactory",
+                        "delimiter": "|"
+                    },
+                    {
                         "class": "solr.BeiderMorseFilterFactory",
                         "nameType": "GENERIC",
                         "ruleType": "APPROX",
@@ -118,6 +128,71 @@
         },
         {
             "name": "name",
+            "class": "solr.TextField",
+            "indexAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters": [
+                    {
+                        "class": "solr.ASCIIFoldingFilterFactory",
+                        "preserveOriginal": true
+                    },
+                    {
+                        "class": "solr.LowerCaseFilterFactory"
+                    },
+                    {
+                        "class": "solr.EnglishPossessiveFilterFactory"
+                    },
+                    {
+                        "class": "solr.DoubleMetaphoneFilterFactory",
+                        "inject": true
+                    },
+                    {
+                        "class": "solr.CommonGramsFilterFactory"
+                    },
+                    {
+                        "class": "solr.HyphenatedWordsFilterFactory"
+                    }
+                ]
+            },
+            "queryAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters": [
+                    {
+                        "class": "solr.ASCIIFoldingFilterFactory",
+                        "preserveOriginal": true
+                    },
+                    {
+                        "class": "solr.LowerCaseFilterFactory"
+                    },
+                    {
+                        "class": "solr.EnglishPossessiveFilterFactory"
+                    },
+                    {
+                        "class": "solr.SynonymGraphFilterFactory",
+                        "synonyms": "/var/solr/data/music/genreList.txt",
+                        "expand": false,
+                        "ignoreCase": true
+                    },
+                    {
+                        "class": "solr.DelimitedBoostTokenFilterFactory",
+                        "delimiter": "|"
+                    },
+                    {
+                        "class": "solr.DoubleMetaphoneFilterFactory",
+                        "inject": true
+                    },
+                    {
+                        "class": "solr.CommonGramsFilterFactory"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "genreName",
             "class": "solr.TextField",
             "indexAnalyzer": {
                 "tokenizer": {
@@ -233,6 +308,16 @@
                     },
                     {
                         "class": "solr.EnglishPossessiveFilterFactory"
+                    },
+                    {
+                        "class": "solr.SynonymGraphFilterFactory",
+                        "synonyms": "/var/solr/data/music/genreList.txt",
+                        "expand": false,
+                        "ignoreCase": true
+                    },
+                    {
+                        "class": "solr.DelimitedBoostTokenFilterFactory",
+                        "delimiter": "|"
                     },
                     {
                         "class": "solr.LengthFilterFactory",
@@ -416,7 +501,7 @@
         },
         {
             "name": "artists.genres",
-            "type": "name",
+            "type": "genreName",
             "indexed": true,
             "stored": true,
             "uninvertible": false,

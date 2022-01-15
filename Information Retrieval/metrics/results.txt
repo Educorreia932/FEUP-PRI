@@ -1,0 +1,179 @@
+live:
+
+WF0 - NNNNNRRNNN
+I Alone
+Lightning Crashes
+All Over You
+Let Praises Rise
+Get It Girl
+Know Me
+Jesus, You're Beautiful (Live)
+Bonnie & Shyne
+On & On
+I've Got a Dream - From "Tangled"/Soundtrack Version
+
+WF1 - NNNNRRNRRR
+
+Live Life
+Live Your Life
+Love Love Love
+Live Your Life
+Real Love - Live
+Love Goes On - Live
+Love Don't Live Here
+Build My Life - Live
+Bandoleros - Live
+Fierce - Live
+
+WF2 - Note: Exact same result as WF0
+I Alone
+Lightning Crashes
+All Over You
+Let Praises Rise
+Get It Girl
+Know Me
+Jesus, You're Beautiful (Live)
+Bonnie & Shyne
+On & On
+I've Got a Dream - From "Tangled"/Soundtrack Version
+
+
+WF3 - NNNNNRRNNN
+Live Life
+Live Your Life
+Love Love Love
+Live Your Life
+Real Love - Live
+Love Goes On - Live
+Love Don't Live Here
+Build My Life - Live
+I Alone
+Lightning Crashes
+
+
+
+dance:
+WF0 - NNNRNNNRRN    Note: A lot of them were above 0.6 but under 0.7
+WF0 values - 0.361 0.576 0.624 0.744 0.349 0.622 0.663 0.872 0.721 0.647
+
+WF1 - NRNRRRNRRR
+WF1 values - 0.622 0.872 0.621 0.822 0.885 0.791 0.456 0.765 0.708 0.783
+
+WF2 - NNNNNNNNRN
+WF2 values - 0.576 0.622 0.511 0.576 0.444 0.642 0.553 0.551 0.716 0.688
+
+WF3 - NRNRRRNRRR
+WF3 values - 0.622 0.872 0.621 0.822 0.885 0.791 0.456 0.765 0.708 0.783
+
+
+
+pop song remixes:
+
+WF0 - RRNNRNNNNRR
+WF0 estimated value - .8
+    1-(Doesn't have spefecified artist genres but it's a remix and sounds fairly pop-like)
+WF0 values: .7 .9 .2 .3 1.0 .4 .3 .2 .8 1.0
+
+Bebé - Remix
+Congratulations - Remix
+Woo Hah!! Got You All in Check
+Grow Up
+Homemade Dynamite - REMIX
+Don't Cha
+Look At Me Now
+Drummer Boy
+We Thuggin' - Remix
+Be Okay - Dzeko & Torres Remix
+
+WF1 - RRNRNRRRRR
+
+Bebé - Remix
+Baba O'Riley - Remix
+OG Bobby Johnson - Remix
+Be Okay - Dzeko & Torres Remix
+Wylin' (Remix) [feat. Bubba Sparxxx & Charlie Farley]
+Jacked Up (Remix) [feat. Colt Ford & Bubba Sparxxx]
+0 Sentimientos (Remix) [feat. Noriel, Darkiel, Lyan, Messiah & Baby Rasta]
+Congratulations - Remix
+Gasolina Budda Remix - Remix
+Bojangles (Remix)
+
+WF2 - RNNRRNNRNN
+
+Bebé - Remix
+Heaven - A Cappella
+Love
+Acércate - Remix
+Ignition - Remix
+I Believe - Live
+Promise
+Reverse - Steve James Remix
+You Are
+Back to Beautiful
+
+WF3 - RRRRNNRRRN
+
+Bebé - Remix
+Acércate - Remix
+Ignition - Remix
+Reverse - Steve James Remix
+You Are
+Back to Beautiful
+Soy un Problema (Remix)
+May I Have This Dance (Remix) [feat. Chance the Rapper]
+In My Room - GTA Remix
+What I've Waited for
+
+
+(rock OR metal) AND love:
+WF0 - NNNRN
+Miss Alissa
+Rock The Boat
+Blind - Radio Edit
+Feelings Mutual
+Runaway
+Pirate Flag
+Get Ready For This
+Girls Love to Shake It
+Rich Love (with Seeb)
+Gonna Make It
+
+WF1
+Rock The Boat
+Feelings Mutual
+Rich Love (with Seeb)
+Rock Me
+Miss Alissa
+Rock N Roll
+I Love Rock 'n' Roll
+Wrecking Ball - Rock
+Rock Your Body
+Rock Box
+
+WF2
+Show Me Love - Skrillex Remix
+For My Good
+Tear da Club Up '97
+Sing And Shout - Live
+Where the Money Is
+Drink It Up
+Juke Box Hero
+Cruise - Remix
+American Pie
+Take Me To The King
+
+WF3
+Love in America (Radio Edit)
+Rock The Boat
+Rock Me
+Say Hey (I Love You)
+Rock N Roll
+Stuck in the Middle
+Fun
+Ready Set Roll
+Poppin' - Main
+Wrecking Ball - Rock
+
+
+
+
