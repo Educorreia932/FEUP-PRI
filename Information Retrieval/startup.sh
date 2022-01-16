@@ -9,6 +9,9 @@ sleep 2
 
 cp /data/synonyms.txt /var/solr/data/music/synonyms.txt
 cp /data/enumsConfig.xml /var/solr/data/music/enumsConfig.xml
+cp /data/genreList.txt /var/solr/data/music/genreList.txt
+cp /data/genreList.txt /var/solr/data/music/genreListSynonyms.txt
+cp /data/genreList.txt /var/solr/data/music/genreListProtected.txt
 
 # Send schema
 curl -X POST -H 'Content-type:application/json' \
