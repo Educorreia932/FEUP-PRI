@@ -14,7 +14,7 @@
 
 				<v-card-subtitle>
 					<div class="mt-2">
-						<v-chip v-for="genre of artist.genres" :key="genre" class="mr-2">
+						<v-chip v-for="genre of [artist.genres]" :key="genre" class="mr-2">
 							{{ genre }}
 						</v-chip>
 					</div>

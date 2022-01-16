@@ -7,7 +7,7 @@
 
 			<v-subheader>Searching by</v-subheader>
 
-			<v-radio-group v-model="searchingBy">
+			<v-radio-group v-model="searchingBy" class="mt-0">
 				<v-radio
 					v-for="docType in ['Album', 'Artist', 'Track']"
 					:key="docType"
@@ -41,10 +41,15 @@
 				</p>
 
 				<v-list>
-					<v-list-item v-for="track of results" :key="track.uri" class="mb-4" style="width: 35em;">
-						<album v-if="searchingBy === 'Album'" :album="track.albums[0]"/>
-						<artist v-if="searchingBy === 'Artist'" :artist="track.artists[0]"/>
-						<song v-if="searchingBy === 'Track'" :track="track"/>
+					<v-list-item
+						v-for="result of results[searchingBy]"
+						:key="result.uri"
+						class="mb-4"
+						style="width: 35em;"
+					>
+						<album v-if="searchingBy === 'Album'" :album="result"/>
+						<artist v-if="searchingBy === 'Artist'" :artist="result"/>
+						<song v-if="searchingBy === 'Track'" :track="result"/>
 					</v-list-item>
 				</v-list>
 
@@ -75,7 +80,11 @@ export default {
 	},
 	data() {
 		return {
-			results: [],
+			results: {
+				"Albums": [],
+				"Artists": [],
+				"Tracks": [],
+			},
 			found: 0,
 			resultsPerPage: 10,
 			page: 1,
@@ -87,15 +96,19 @@ export default {
 	computed: {
 		numPages() {
 			return Math.floor(this.found / this.resultsPerPage);
-		}
+		},
 	},
 	methods: {
 		retrieveResults(searchTerms = "*") {
-			console.log(searchTerms)
 			const start = (this.page - 1) * this.resultsPerPage
 
 			Tracks.search(start, searchTerms).then((response) => {
-				this.results = response.docs;
+				this.results = {}
+
+				this.results["Track"] = response.docs;
+				this.results["Artist"] = response.docs.map(item => item.artists).flat()
+				this.results["Album"] = response.docs.map(item => item.albums).flat()
+
 				this.found = response.found;
 			})
 		}
@@ -106,7 +119,7 @@ export default {
 	watch: {
 		page: function () {
 			this.retrieveResults()
-		}
-	}
+		},
+	},
 }
 </script>

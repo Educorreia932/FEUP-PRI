@@ -28,7 +28,7 @@ export default {
 					q: searchTerms,
 					defType: "edismax",
 					start: start,
-					qf: "name^5 lyrics^3 artists.name^1 artists.genres albums.name^3",
+					qf: "name^5 artists.name^5 albums.name^3",
 				}
 			})
 			.then((response) => {
