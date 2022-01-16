@@ -61,7 +61,7 @@
             "indexAnalyzer": {
                 "tokenizer": {
                     "class": "solr.PatternTokenizerFactory",
-                    "pattern": "(?i)(([sS]hiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
+                    "pattern": "(?i)((shiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
                     "group": 0
                 },
                 "filters": [
@@ -99,7 +99,7 @@
             "queryAnalyzer": {
                 "tokenizer": {
                     "class": "solr.PatternTokenizerFactory",
-                    "pattern": "(?i)(([sS]hiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
+                    "pattern": "(?i)((shiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
                     "group": 0
                 },
                 "filters": [
@@ -148,7 +148,7 @@
             "indexAnalyzer": {
                 "tokenizer": {
                     "class": "solr.PatternTokenizerFactory",
-                    "pattern": "(?i)(([sS]hiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
+                    "pattern": "(?i)((shiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
                     "group": 0
                 },
                 "filters": [
@@ -183,7 +183,7 @@
             "queryAnalyzer": {
                 "tokenizer": {
                     "class": "solr.PatternTokenizerFactory",
-                    "pattern": "(?i)(([sS]hiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
+                    "pattern": "(?i)((shiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
                     "group": 0
                 },
                 "filters": [
@@ -219,6 +219,9 @@
                     },
                     {
                         "class": "solr.CommonGramsFilterFactory"
+                    },
+                    {
+                        "class": "solr.HyphenatedWordsFilterFactory"
                     }
                 ]
             }
@@ -284,7 +287,7 @@
             "indexAnalyzer": {
                 "tokenizer": {
                     "class": "solr.PatternTokenizerFactory",
-                    "pattern": "(?i)(([sS]hiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
+                    "pattern": "(?i)((shiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
                     "group": 0
                 },
                 "filters": [
@@ -297,12 +300,6 @@
                     },
                     {
                         "class": "solr.EnglishPossessiveFilterFactory"
-                    },
-                    {
-                        "class": "solr.SynonymGraphFilterFactory",
-                        "synonyms": "/var/solr/data/music/genreListSynonyms.txt",
-                        "expand": false,
-                        "ignoreCase": true
                     },
                     {
                         "class": "solr.LengthFilterFactory",
@@ -331,17 +328,13 @@
                     },
                     {
                         "class": "solr.RemoveDuplicatesTokenFilterFactory"
-                    },
-                    {
-                        "class": "solr.DelimitedBoostTokenFilterFactory",
-                        "delimiter": "|"
                     }
                 ]
             },
             "queryAnalyzer": {
                 "tokenizer": {
                     "class": "solr.PatternTokenizerFactory",
-                    "pattern": "(?i)(([sS]hiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
+                    "pattern": "(?i)((shiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
                     "group": 0
                 },
                 "filters": [
