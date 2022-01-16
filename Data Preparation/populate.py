@@ -19,7 +19,6 @@ database_path = os.path.join(os.path.dirname(__file__), "data/database.db")
 db.init(database_path)
 db.create_tables([
     Album,
-    AlbumTrack,
     Artist,
     Genre,
     Track,
@@ -33,7 +32,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     redirect_uri="http://127.0.0.1:8000/redirect",
 ))
 
-f = open(os.path.join(os.path.dirname(__file__), "../data/dataset.json"))
+f = open(os.path.join(os.path.dirname(__file__), "data/dataset.json"))
 
 playlists = json.load(f)["playlists"]
 
