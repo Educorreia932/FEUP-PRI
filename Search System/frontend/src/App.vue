@@ -16,14 +16,6 @@
 				>
 				</v-radio>
 			</v-radio-group>
-
-			<v-subheader>Track duration</v-subheader>
-
-			<v-range-slider></v-range-slider>
-
-			<v-subheader>Artist popularity</v-subheader>
-
-			<v-range-slider></v-range-slider>
 		</v-navigation-drawer>
 
 		<v-main>
@@ -42,7 +34,7 @@
 
 				<v-list>
 					<v-list-item
-						v-for="result of results[searchingBy]"
+						v-for="result of results[searchingBy].filter(r => explicit? true: r.explicit === explicit)"
 						:key="result.uri"
 						class="mb-4"
 						style="width: 35em;"
@@ -119,9 +111,12 @@ export default {
 			return distinct
 		},
 		retrieveResults(searchTerms = "*") {
+			if (searchTerms === "")
+				searchTerms = "*"
+
 			const start = (this.page - 1) * this.resultsPerPage
 
-			Tracks.search(start, searchTerms).then((response) => {
+			Tracks.search(start, searchTerms, this.explicit).then((response) => {
 				this.results = {}
 
 				const albums = response.docs.map(item => item.albums).flat();

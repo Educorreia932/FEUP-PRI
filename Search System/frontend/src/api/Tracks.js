@@ -28,6 +28,7 @@ export default {
 					q: searchTerms,
 					defType: "edismax",
 					start: start,
+					rows: 10,
 					qf: "name^5 artists.name^5 albums.name^3",
 				}
 			})
@@ -37,6 +38,19 @@ export default {
 				// Iterate over retrieved documents
 				docs.forEach((doc, k) => {
 					doc = Object.unflatten(doc)
+
+					/**
+					 * Convert:
+					 *  [
+					 *     [uri_A, uri_B]
+					 *     [name_A, name_B]
+					 *  ]
+					 * to:
+					 *  [
+					 *    "A": [uri, name],
+					 *    "B": [uri, name]
+					 *  ]
+					 */
 					const fields = [doc.artists, doc.albums]
 
 					fields.forEach((field, i) => {
@@ -57,6 +71,8 @@ export default {
 					doc.albums = fields[1]
 
 					doc.albums.artists = []
+
+					console.log(doc.artists)
 
 					for (const artist of doc.artists)
 						doc.albums.artists.push(artist)
