@@ -99,15 +99,37 @@ export default {
 		},
 	},
 	methods: {
+		unique(array) {
+			const distinct = []
+
+			for (const a of array) {
+				let found = false
+
+				for (const b of distinct)
+					if (a.name === b.name) {
+						found = true;
+
+						break;
+					}
+
+				if (!found)
+					distinct.push(a)
+			}
+
+			return distinct
+		},
 		retrieveResults(searchTerms = "*") {
 			const start = (this.page - 1) * this.resultsPerPage
 
 			Tracks.search(start, searchTerms).then((response) => {
 				this.results = {}
 
+				const albums = response.docs.map(item => item.albums).flat();
+				const artists = response.docs.map(item => item.artists).flat();
+
+				this.results["Album"] = this.unique(albums)
+				this.results["Artist"] = this.unique(artists)
 				this.results["Track"] = response.docs;
-				this.results["Artist"] = response.docs.map(item => item.artists).flat()
-				this.results["Album"] = response.docs.map(item => item.albums).flat()
 
 				this.found = response.found;
 			})
@@ -118,7 +140,7 @@ export default {
 	},
 	watch: {
 		page: function () {
-			this.retrieveResults()
+			this.retrieveResults(this.searchTerms)
 		},
 	},
 }
