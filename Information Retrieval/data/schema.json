@@ -56,7 +56,7 @@
             }
         },
         {
-            "name": "artist_name",
+            "name": "artst_name",
             "class": "solr.TextField",
             "indexAnalyzer": {
                 "tokenizer": {
@@ -391,8 +391,8 @@
         {
             "name": "uri",
             "type": "generic_text",
-            "indexed": true,
-            "stored": true,
+            "indexed": false,
+            "stored": false,
             "uninvertible": false
         },
         {
@@ -511,11 +511,12 @@
             "type": "bool",
             "indexed": true,
             "stored": true,
-            "uninvertible": false
+            "uninvertible": false,
+            "multiValued": true
         },
         {
             "name": "artists.popularity",
-            "type": "int",
+            "type": "float",
             "indexed": true,
             "stored": true,
             "uninvertible": false,
@@ -524,14 +525,14 @@
         {
             "name": "artists.uri",
             "type": "generic_text",
-            "indexed": true,
-            "stored": true,
+            "indexed": false,
+            "stored": false,
             "uninvertible": false,
             "multiValued": true
         },
         {
             "name": "artists.name",
-            "type": "artist_name",
+            "type": "artst_name",
             "indexed": true,
             "stored": true,
             "uninvertible": false,
@@ -548,8 +549,8 @@
         {
             "name": "albums.uri",
             "type": "generic_text",
-            "indexed": true,
-            "stored": true,
+            "indexed": false,
+            "stored": false,
             "uninvertible": false,
             "multiValued": true
         },
@@ -589,14 +590,14 @@
         {
             "name": "albums.artists.uri",
             "type": "generic_text",
-            "indexed": true,
-            "stored": true,
+            "indexed": false,
+            "stored": false,
             "uninvertible": false,
             "multiValued": true
         },
         {
             "name": "albums.artists.name",
-            "type": "artist_name",
+            "type": "artst_name",
             "indexed": true,
             "stored": true,
             "uninvertible": false,
