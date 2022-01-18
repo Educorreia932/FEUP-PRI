@@ -1,95 +1,53 @@
-# SETUP
+from unittest import result
 import matplotlib.pyplot as plt
-from sklearn.metrics import PrecisionRecallDisplay
+import seaborn as sb
 import numpy as np
-import json
 import requests
-import pandas as pd
+import urllib
+import json
 
-QRELS_FILE = "./relevant.txt"
-QUERY_URL = "http://localhost:8983/solr/music/query?q=dance&q.op=OR&defType=edismax&indent=true&qf=name%20lyrics%20artists.name%20artists.genres%20albums.name"
+from sklearn.metrics import PrecisionRecallDisplay
+
+colors = [
+    "#1F3F2A", 
+    "#1FDF6F", 
+    "#1DB954", 
+    "#098E2A",
+]
+
+sb.set_palette(sb.color_palette(colors))
+
+#QRELS_FILE = "data/relevant.txt"
+
 
 # Read qrels to extract relevant documents
-relevant = list(map(lambda el: el.strip(), open(QRELS_FILE).readlines()))
+#relevant = list(map(lambda el: el.strip(), open(QRELS_FILE).readlines()))
+
+#relevant_list_attribute = "name"
+
+# Read qrels to extract relevant documents
+#relevant = list(map(lambda el: el.strip(), open(QRELS_FILE).readlines()))
 # Get query results from Solr instance
-results = requests.get(QUERY_URL).json()['response']['docs']
+#results = requests.get(QUERY_URL).json()['response']['docs']
 
-# METRICS TABLE
-# Define custom decorator to automatically calculate metric based on key
-metrics = {}
-metric = lambda f: metrics.setdefault(f.__name__, f)
-
-@metric
-def ap(results, relevant):
-    """Average Precision"""
-    precision_values = [
-        len([
-            doc 
-            for doc in results[:idx]
-            if doc['name'] in relevant
-        ]) / idx 
-        for idx in range(1, len(results))
-    ]
-    return sum(precision_values)/len(precision_values)
-
-@metric
-def p10(results, relevant, n=10):
-    """Precision at N"""
-    return len([doc for doc in results[:n] if doc['name'] in relevant])/n
-
-def calculate_metric(key, results, relevant):
-    return metrics[key](results, relevant)
-
-# Define metrics to be calculated
-evaluation_metrics = {
-    'ap': 'Average Precision',
-    'p10': 'Precision at 10 (P@10)'
-}
-
-# Calculate all metrics and export results as LaTeX table
-df = pd.DataFrame([['Metric','Value']] +
-    [
-        [evaluation_metrics[m], calculate_metric(m, results, relevant)]
-        for m in evaluation_metrics
-    ]
-)
-
-with open('results.tex','w') as tf:
-    tf.write(df.to_latex())
-
-# PRECISION-RECALL CURVE
-# Calculate precision and recall values as we move down the ranked list
-precision_values = [
-    len([
-        doc 
-        for doc in results[:idx]
-        if doc['id'] in relevant
-    ]) / idx 
-    for idx, _ in enumerate(results, start=1)
+systems = [
+    "name lyrics artists.name artists.genres albums.name",
+    "name^5 lyrics^3 artists.name^1 artists.genres albums.name^3",
+    "name^1 lyrics^3 artists.name artists.genres^5 albums.name",
+    "name^3 lyrics^5 artists.name artists.genres albums.name"
 ]
 
-recall_values = [
-    len([
-        doc for doc in results[:idx]
-        if doc['id'] in relevant
-    ]) / len(relevant)
-    for idx, _ in enumerate(results, start=1)
-]
+#_, ax = plt.subplots(figsize=(10, 10))
 
-precision_recall_match = {k: v for k,v in zip(recall_values, precision_values)}
+#interpolated_precision = []
+#interpolated_recall = []
 
-# Extend recall_values to include traditional steps for a better curve (0.1, 0.2 ...)
-recall_values.extend([step for step in np.arange(0.1, 1.1, 0.1) if step not in recall_values])
-recall_values = sorted(set(recall_values))
+for i, system in enumerate(systems):
+    # Get query results from Solr instance
+    qf = urllib.parse.quote(system)
+    query_url = f"http://localhost:8983/solr/music/select?defType=edismax&df=name%2Clyrics%2Cartists.name%2Cartists.genre&indent=true&q.op=OR&q=love&qf={qf}&wt=json&rows=20"
 
-# Extend matching dict to include these new intermediate steps
-for idx, step in enumerate(recall_values):
-    if step not in precision_recall_match:
-        if recall_values[idx-1] in precision_recall_match:
-            precision_recall_match[step] = precision_recall_match[recall_values[idx-1]]
-        else:
-            precision_recall_match[step] = precision_recall_match[recall_values[idx+1]]
+    #results = requests.get(query_url).json()#['response']#['docs']
 
-disp = PrecisionRecallDisplay([precision_recall_match.get(r) for r in recall_values], recall_values)
-disp.plot()
-plt.savefig('precision_recall.pdf')
+    with open(str(i) + ".json", "w") as outfile:
+        json.dump(requests.get(query_url).json(), outfile)
