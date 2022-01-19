@@ -1,0 +1,466 @@
+{
+    "add-field-type": [
+        {
+            "name": "int",
+            "class": "solr.IntPointField"
+        },
+        {
+            "name": "float",
+            "class": "solr.FloatPointField"
+        },
+        {
+            "name": "bool",
+            "class": "solr.BoolField"
+        },
+        {
+            "name": "date",
+            "class": "solr.DateRangeField"
+        },
+        {
+            "name": "album_type",
+            "class": "solr.EnumFieldType",
+            "docValues": true,
+            "enumsConfig": "/var/solr/data/music/enumsConfig.xml",
+            "enumName": "album_type"
+        },
+        {
+            "name": "generic_text",
+            "class": "solr.TextField",
+            "indexAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters": [
+                    {
+                        "class": "solr.ASCIIFoldingFilterFactory",
+                        "preserveOriginal": true
+                    },
+                    {
+                        "class": "solr.LowerCaseFilterFactory"
+                    }
+                ]
+            },
+            "queryAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters": [
+                    {
+                        "class": "solr.ASCIIFoldingFilterFactory",
+                        "preserveOriginal": true
+                    },
+                    {
+                        "class": "solr.LowerCaseFilterFactory"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "artist_name",
+            "class": "solr.TextField",
+            "indexAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters": [
+                    {
+                        "class": "solr.ASCIIFoldingFilterFactory",
+                        "preserveOriginal": true
+                    },
+                    {
+                        "class": "solr.LowerCaseFilterFactory"
+                    },
+                    {
+                        "class": "solr.EnglishPossessiveFilterFactory"
+                    },
+                    {
+                        "class": "solr.BeiderMorseFilterFactory",
+                        "nameType": "GENERIC",
+                        "ruleType": "APPROX",
+                        "concat": false,
+                        "languageSet": "auto"
+                    },
+                    {
+                        "class": "solr.HyphenatedWordsFilterFactory"
+                    },
+                    {
+                        "class": "solr.CommonGramsFilterFactory"
+                    }
+                ]
+            },
+            "queryAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters": [
+                    {
+                        "class": "solr.ASCIIFoldingFilterFactory",
+                        "preserveOriginal": true
+                    },
+                    {
+                        "class": "solr.LowerCaseFilterFactory"
+                    },
+                    {
+                        "class": "solr.EnglishPossessiveFilterFactory"
+                    },
+                    {
+                        "class": "solr.BeiderMorseFilterFactory",
+                        "nameType": "GENERIC",
+                        "ruleType": "APPROX",
+                        "concat": false,
+                        "languageSet": "auto"
+                    },
+                    {
+                        "class": "solr.CommonGramsFilterFactory"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "name",
+            "class": "solr.TextField",
+            "indexAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters": [
+                    {
+                        "class": "solr.ASCIIFoldingFilterFactory",
+                        "preserveOriginal": true
+                    },
+                    {
+                        "class": "solr.LowerCaseFilterFactory"
+                    },
+                    {
+                        "class": "solr.EnglishPossessiveFilterFactory"
+                    },
+                    {
+                        "class": "solr.DoubleMetaphoneFilterFactory",
+                        "inject": true
+                    },
+                    {
+                        "class": "solr.CommonGramsFilterFactory"
+                    },
+                    {
+                        "class": "solr.HyphenatedWordsFilterFactory"
+                    }
+                ]
+            },
+            "queryAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters": [
+                    {
+                        "class": "solr.ASCIIFoldingFilterFactory",
+                        "preserveOriginal": true
+                    },
+                    {
+                        "class": "solr.LowerCaseFilterFactory"
+                    },
+                    {
+                        "class": "solr.EnglishPossessiveFilterFactory"
+                    },
+                    {
+                        "class": "solr.DoubleMetaphoneFilterFactory",
+                        "inject": true
+                    },
+                    {
+                        "class": "solr.CommonGramsFilterFactory"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "lyrics",
+            "class": "solr.TextField",
+            "indexAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters": [
+                    {
+                        "class": "solr.ASCIIFoldingFilterFactory",
+                        "preserveOriginal": true
+                    },
+                    {
+                        "class": "solr.LowerCaseFilterFactory"
+                    },
+                    {
+                        "class": "solr.EnglishPossessiveFilterFactory"
+                    },
+                    {
+                        "class": "solr.StopFilterFactory",
+                        "ignoreCase": true
+                    },
+                    {
+                        "class": "solr.DoubleMetaphoneFilterFactory",
+                        "inject": true
+                    },
+                    {
+                        "class": "solr.HyphenatedWordsFilterFactory"
+                    },
+                    {
+                        "class": "solr.PorterStemFilterFactory"
+                    }
+                ]
+            },
+            "queryAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters": [
+                    {
+                        "class": "solr.ASCIIFoldingFilterFactory",
+                        "preserveOriginal": true
+                    },
+                    {
+                        "class": "solr.LowerCaseFilterFactory"
+                    },
+                    {
+                        "class": "solr.EnglishPossessiveFilterFactory"
+                    },
+                    {
+                        "class": "solr.SynonymGraphFilterFactory",
+                        "synonyms": "/var/solr/data/music/synonyms.txt"
+                    },
+                    {
+                        "class": "solr.StopFilterFactory",
+                        "ignoreCase": true
+                    },
+                    {
+                        "class": "solr.DoubleMetaphoneFilterFactory",
+                        "inject": true
+                    },
+                    {
+                        "class": "solr.PorterStemFilterFactory"
+                    }
+                ]
+            }
+        }
+    ],
+    "add-field": [
+        {
+            "name": "uri",
+            "type": "generic_text",
+            "indexed": true,
+            "stored": true,
+            "uninvertible": false
+        },
+        {
+            "name": "name",
+            "type": "name",
+            "indexed": true,
+            "uninvertible": false,
+            "required": true
+        },
+        {
+            "name": "lyrics",
+            "type": "lyrics",
+            "indexed": true,
+            "stored": true,
+            "uninvertible": false,
+            "required": true
+        },
+        {
+            "name": "duration_ms",
+            "type": "int",
+            "indexed": false,
+            "stored": true,
+            "uninvertible": false,
+            "required": true
+        },
+        {
+            "name": "acousticness",
+            "type": "float",
+            "indexed": false,
+            "stored": true,
+            "uninvertible": false,
+            "required": true
+        },
+        {
+            "name": "danceability",
+            "type": "float",
+            "indexed": false,
+            "stored": true,
+            "uninvertible": false,
+            "required": true
+        },
+        {
+            "name": "energy",
+            "type": "float",
+            "indexed": false,
+            "stored": true,
+            "uninvertible": false,
+            "required": true
+        },
+        {
+            "name": "instrumentalness",
+            "type": "float",
+            "indexed": false,
+            "stored": true,
+            "uninvertible": false,
+            "required": true
+        },
+        {
+            "name": "liveness",
+            "type": "float",
+            "indexed": false,
+            "stored": true,
+            "uninvertible": false,
+            "required": true
+        },
+        {
+            "name": "loudness",
+            "type": "float",
+            "indexed": false,
+            "stored": true,
+            "uninvertible": false,
+            "required": true
+        },
+        {
+            "name": "mode",
+            "type": "bool",
+            "indexed": false,
+            "stored": true,
+            "uninvertible": false,
+            "required": true
+        },
+        {
+            "name": "valence",
+            "type": "float",
+            "indexed": false,
+            "stored": true,
+            "uninvertible": false,
+            "required": true
+        },
+        {
+            "name": "speechiness",
+            "type": "float",
+            "indexed": false,
+            "stored": true,
+            "uninvertible": false,
+            "required": true
+        },
+        {
+            "name": "tempo",
+            "type": "float",
+            "indexed": false,
+            "stored": true,
+            "uninvertible": false,
+            "required": true
+        },
+        {
+            "name": "time_signature",
+            "type": "int",
+            "indexed": false,
+            "stored": true,
+            "uninvertible": false,
+            "required": true
+        },
+        {
+            "name": "explicit",
+            "type": "bool",
+            "indexed": true,
+            "stored": true,
+            "uninvertible": false
+        },
+        {
+            "name": "artists.popularity",
+            "type": "int",
+            "indexed": true,
+            "stored": true,
+            "uninvertible": false,
+            "multiValued": true
+        },
+        {
+            "name": "artists.uri",
+            "type": "generic_text",
+            "indexed": true,
+            "stored": true,
+            "uninvertible": false,
+            "multiValued": true
+        },
+        {
+            "name": "artists.name",
+            "type": "artist_name",
+            "indexed": true,
+            "stored": true,
+            "uninvertible": false,
+            "multiValued": true
+        },
+        {
+            "name": "artists.genres",
+            "type": "name",
+            "indexed": true,
+            "stored": true,
+            "uninvertible": false,
+            "multiValued": true
+        },
+        {
+            "name": "albums.uri",
+            "type": "generic_text",
+            "indexed": true,
+            "stored": true,
+            "uninvertible": false,
+            "multiValued": true
+        },
+        {
+            "name": "albums.name",
+            "type": "name",
+            "indexed": true,
+            "stored": true,
+            "uninvertible": false,
+            "multiValued": true
+        },
+        {
+            "name": "albums.album_type",
+            "type": "album_type",
+            "indexed": true,
+            "stored": true,
+            "uninvertible": false,
+            "multiValued": true,
+            "docValues": true
+        },
+        {
+            "name": "albums.release_date",
+            "type": "date",
+            "indexed": true,
+            "stored": true,
+            "uninvertible": false,
+            "multiValued": true
+        },
+        {
+            "name": "albums.total_tracks",
+            "type": "int",
+            "indexed": false,
+            "stored": true,
+            "uninvertible": false,
+            "multiValued": true
+        },
+        {
+            "name": "albums.artists.uri",
+            "type": "generic_text",
+            "indexed": true,
+            "stored": true,
+            "uninvertible": false,
+            "multiValued": true
+        },
+        {
+            "name": "albums.artists.name",
+            "type": "artist_name",
+            "indexed": true,
+            "stored": true,
+            "uninvertible": false,
+            "multiValued": true
+        },
+        {
+            "name": "albums.artists.popularity",
+            "type": "int",
+            "indexed": false,
+            "stored": true,
+            "uninvertible": false,
+            "multiValued": true
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+WF0
+qf: name lyrics artists.name artists.genres albums.name
+WF1
+qf: name^5 lyrics^3 artists.name^1 artists.genres albums.name^3
+WF2
+qf: name^1 lyrics^3 artists.name artists.genres^5 albums.name
+WF3
+qf: name^3 lyrics^5 artists.name artists.genres albums.name
+
+Q0 - Query: live        Relevant: Ones that are live (have live in the title or liveness >0.8)
+Q1 - Query: dance       Relevant: danceability > 0.7 (keep danceability values for relative relevance calculation)
+Q2 - Query: pop AND remix       Relevant: expected
+Q3 - Query: (rock OR metal) AND love        Relevant: expected
+Q4 - Query: love        Relevant: expected

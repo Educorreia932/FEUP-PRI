@@ -1,0 +1,153 @@
+Q0 - Query: live        Relevant: Ones that are live (have live in the title or liveness >0.8)
+Q1 - Query: dance       Relevant: danceability > 0.7 (keep danceability values for relative relevance calculation)
+Q2 - Query: pop AND remix       Relevant: expected
+Q3 - Query: (rock OR metal) AND love        Relevant: expected
+Q4 - Query: love        Relevant: expected
+
+Q0
+W0 - NNNNNNRNNN NRRNNRNRNR
+W1 - NNNNRRRRRR RNRRRNNRRR
+W2 - NNNNNNRNNN NRRNNRNRNN
+W3 - NNNNNNRNNN NRRNNRNRNN
+
+Q1
+W0 - NNNRNNRNRN RNRNNNRRRN
+W1 - NRNRRRNRRR RRRRNNNNNN
+W2 - NNNNNNNNRN NNNNNNRNNR
+W3 - NRNRRRNRRR RRRRNNNNNN
+
+W0 FLOATS - .361 .576 .624 .744 .349 .622 .872 .663 .721 .647
+.73 .641 .774 .557 .655 .621 .822 .855 .791 .456
+W1 FLOATS - .622 .872 .621 .822 .885 .791 .456 .765 .708 .783
+.744 .787 .813 .733 .616 .397 .374 .578 .587 .698
+W2 FLOATS - .576 .622 .511 .576 .444 .642 .553 .551 .716 .688
+.489 .449 .459 .432 .673 .519 .749 .689 .425 .737
+W3 FLOATS - .622 .872 .621 .822 .885 .791 .456 .765 .708 .783
+.744 .787 .813 .733 .616 .379 .374 .578 .587 .698
+
+Q2
+W0 - NNNNNNNRNR NNNNNNNNNR
+W1 - RRNNNNNRRN RRRNNRRRRR
+W2 - NNNNNNNRNN NNNNRNRRNN
+W3 - NNNRNNNNNN RNNNRNRNNN
+
+TODO - Refazer Q2 W0
+
+Shabba REMIX - N
+We Thuggin' - Remix - N (w0_? w3_17)
+Acércate - Remix - R (w0_? w2_3 w3_1)
+Ignition - Remix - N (w0_? w2_4 w3_2)
+Bebé - Remix - R (w0_? w2_8 w3_4)
+Ride - Wes James Remix - N
+Te Robo Remix - N (w0_? w3_11)
+May I Have This Dance (Remix) [feat. Chance the Rapper] - ?
+In My Room - GTA Remix - N (W0_? W2_19 w3_12)
+El Perdedor - The Remix - R (W0_? W2_20 w3_13)
+
+? - Não tem pop mas tem hip hop
+! - Não tem genres
+
+Gasolina Budda Remix - Remix - R
+Bojangles (Remix) - ? (w1 4)
+Encantadora - Remix - ! (w1 6 w3_14)
+Percocet - Remix - ! (w1 7)
+DM - Remix - ! (w1 8 w3_15)
+Despacito - Remix - R
+Coronamos - Remix (w1 10)
+Travesuras - Remix - ! (w1 11)
+Ginza - Remix - ! (w1 12)
+Jealous - Remix - ! (w1 13)
+Baba O'Riley - Remix - ! (w1 14)
+OG Bobby Johnson - Remix - ! (w1 15)
+Congratulations - Remix - ! (w1 16)
+Bajito - Remix - ! (w1 17)
+Sugar - Remix - ! (w1 19)
+Faded - Odesza Remix - ! (w1 20)
+Te Robo Remix - ! (W2_18)
+
+Diabla - Official Remix (w3_18)
+
+Q3
+W0 - RRNNNNRRNN RRRNRNNNRN
+W1 - RNRNNNNNNN RNNNNNNNNN
+W2 - RRRRRNRRRR RRNRRRRRRN
+W3 - RNNRNRNNNN NNNNNNNNNN
+
+
+Miss Alissa - R (w0_1)
+Blind - Radio Edit R (W0_2)
+Runaway - N? (w0_3) 
+Girls Love to Shake It - N? (w0_4)
+Gonna Make It - N? (w0_5)
+Rock The Boat - N (w0_6)
+
+For My Good - R (W0_12)
+I Won't Give Up - R (W0_13)
+Say Hey (I Love You) - R (W0_15, W1_3)
+You Won't Relent - Live - N (W0_16)
+Portland - N (W0_18)
+
+
+I Love Myself - N? (W1_4)
+Love Like This - N? (W1_5)
+Love Slow - N? (W1_9)
+Love in the Middle of a Firefight - N? (W1_10)
+Old School Love - N? (W1_12)
+Book of Love - N? (W1_13)
+Love Game - N? (w1_14)
+Dutty Love - ? (w1_18)
+Liquid Love - ? (w1_19)
+We Are The Free - Live - ? (w1_20)
+
+Sing And Shout - Live - R (W2_4)
+here the Money Is - R (W2_5)
+Drink It Up - N (W2_6)
+Cruise - Remix - R (W2_7)
+Take Me To The King - R (W2_8)
+Warm & Easy - R (W2_9)
+Take a Look Around - R (W2_10)
+Just The Same - R (W2_11)
+Liquid Love - ? (w2_19)
+We Are The Free - Live - ? (W2_20)
+
+
+Q4
+W0 - RRNNNNRRNN RRRNRNNNRN
+W1 - RNRNNNNNNN RNNNNNNNNN
+W2 - RRRRRNRRRR RRNRRRRRRN
+W3 - RNNRNRNNNN NNNNNNNNNN
+
+
+
+
+
+
+Q0
+W0 - NNNNNNRNNN NRRNNRNRNR
+W1 - NNNNRRRRRR RNRRRNNRRR
+W2 - NNNNNNRNNN NRRNNRNRNN
+W3 - NNNNNNRNNN NRRNNRNRNN
+
+Q1
+W0 - NNNRNNRNRN RNRNNNRRRN
+W1 - NRNRRRNRRR RRRRNNNNNN
+W2 - NNNNNNNNRN NNNNNNRNNR
+W3 - NRNRRRNRRR RRRRNNNNNN
+
+Q2
+W0 - NNNNNNNRNR NNNNNNNNNR
+W1 - RRNNNNNRRN RRRNNRRRRR
+W2 - NNNNNNNRNN NNNNRNRRNN
+W3 - NNNRNNNNNN RNNNRNRNNN
+
+Q3
+W0 - RRNNNNRRNN RRRNRNNNRN
+W1 - RNRNNNNNNN RNNNNNNNNN
+W2 - RRRRRNRRRR RRNRRRRRRN
+W3 - RNNRNRNNNN NNNNNNNNNN
+
+Q4
+W0 - RRRNRNNNNN RNRNNRRRNN
+W1 - RRRRRRRRRR RRRRRRRRRR
+W2 - RRNNNNNNNN NNRNNRNRNN
+W3 - RRRRRRRRRR RRRRRRRRRR

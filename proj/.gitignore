@@ -1,0 +1,18 @@
+# Data
+dataset/
+
+# Cache
+.cache
+__pycache__/
+
+# Environment files
+.env
+
+# Database files
+*.db
+
+database.json
+
+.idea/
+
+Frontend/
