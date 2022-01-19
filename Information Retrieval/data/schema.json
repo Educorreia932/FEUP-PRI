@@ -56,13 +56,11 @@
             }
         },
         {
-            "name": "artst_name",
+            "name": "artist_name",
             "class": "solr.TextField",
             "indexAnalyzer": {
                 "tokenizer": {
-                    "class": "solr.PatternTokenizerFactory",
-                    "pattern": "(?i)((shiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
-                    "group": 0
+                    "class": "solr.StandardTokenizerFactory"
                 },
                 "filters": [
                     {
@@ -74,12 +72,6 @@
                     },
                     {
                         "class": "solr.EnglishPossessiveFilterFactory"
-                    },
-                    {
-                        "class": "solr.SynonymGraphFilterFactory",
-                        "synonyms": "/var/solr/data/music/genreListSynonyms.txt",
-                        "expand": false,
-                        "ignoreCase": true
                     },
                     {
                         "class": "solr.BeiderMorseFilterFactory",
@@ -98,9 +90,7 @@
             },
             "queryAnalyzer": {
                 "tokenizer": {
-                    "class": "solr.PatternTokenizerFactory",
-                    "pattern": "(?i)((shiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
-                    "group": 0
+                    "class": "solr.StandardTokenizerFactory"
                 },
                 "filters": [
                     {
@@ -112,22 +102,6 @@
                     },
                     {
                         "class": "solr.EnglishPossessiveFilterFactory"
-                    },
-                    {
-                        "class": "solr.SynonymGraphFilterFactory",
-                        "synonyms": "/var/solr/data/music/genreListSynonyms.txt",
-                        "expand": false,
-                        "ignoreCase": true
-                    },
-                    {
-                        "class": "solr.SynonymGraphFilterFactory",
-                        "synonyms": "/var/solr/data/music/genreList.txt",
-                        "expand": false,
-                        "ignoreCase": true
-                    },
-                    {
-                        "class": "solr.DelimitedBoostTokenFilterFactory",
-                        "delimiter": "|"
                     },
                     {
                         "class": "solr.BeiderMorseFilterFactory",
@@ -144,90 +118,6 @@
         },
         {
             "name": "name",
-            "class": "solr.TextField",
-            "indexAnalyzer": {
-                "tokenizer": {
-                    "class": "solr.PatternTokenizerFactory",
-                    "pattern": "(?i)((shiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
-                    "group": 0
-                },
-                "filters": [
-                    {
-                        "class": "solr.ASCIIFoldingFilterFactory",
-                        "preserveOriginal": true
-                    },
-                    {
-                        "class": "solr.LowerCaseFilterFactory"
-                    },
-                    {
-                        "class": "solr.EnglishPossessiveFilterFactory"
-                    },
-                    {
-                        "class": "solr.SynonymGraphFilterFactory",
-                        "synonyms": "/var/solr/data/music/genreListSynonyms.txt",
-                        "expand": false,
-                        "ignoreCase": true
-                    },
-                    {
-                        "class": "solr.DoubleMetaphoneFilterFactory",
-                        "inject": true
-                    },
-                    {
-                        "class": "solr.CommonGramsFilterFactory"
-                    },
-                    {
-                        "class": "solr.HyphenatedWordsFilterFactory"
-                    }
-                ]
-            },
-            "queryAnalyzer": {
-                "tokenizer": {
-                    "class": "solr.PatternTokenizerFactory",
-                    "pattern": "(?i)((shiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
-                    "group": 0
-                },
-                "filters": [
-                    {
-                        "class": "solr.ASCIIFoldingFilterFactory",
-                        "preserveOriginal": true
-                    },
-                    {
-                        "class": "solr.LowerCaseFilterFactory"
-                    },
-                    {
-                        "class": "solr.EnglishPossessiveFilterFactory"
-                    },
-                    {
-                        "class": "solr.SynonymGraphFilterFactory",
-                        "synonyms": "/var/solr/data/music/genreListSynonyms.txt",
-                        "expand": false,
-                        "ignoreCase": true
-                    },
-                    {
-                        "class": "solr.SynonymGraphFilterFactory",
-                        "synonyms": "/var/solr/data/music/genreList.txt",
-                        "expand": false,
-                        "ignoreCase": true
-                    },
-                    {
-                        "class": "solr.DelimitedBoostTokenFilterFactory",
-                        "delimiter": "|"
-                    },
-                    {
-                        "class": "solr.DoubleMetaphoneFilterFactory",
-                        "inject": true
-                    },
-                    {
-                        "class": "solr.CommonGramsFilterFactory"
-                    },
-                    {
-                        "class": "solr.HyphenatedWordsFilterFactory"
-                    }
-                ]
-            }
-        },
-        {
-            "name": "genreName",
             "class": "solr.TextField",
             "indexAnalyzer": {
                 "tokenizer": {
@@ -286,9 +176,7 @@
             "class": "solr.TextField",
             "indexAnalyzer": {
                 "tokenizer": {
-                    "class": "solr.PatternTokenizerFactory",
-                    "pattern": "(?i)((shiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
-                    "group": 0
+                    "class": "solr.StandardTokenizerFactory"
                 },
                 "filters": [
                     {
@@ -300,17 +188,6 @@
                     },
                     {
                         "class": "solr.EnglishPossessiveFilterFactory"
-                    },
-                    {
-                        "class": "solr.LengthFilterFactory",
-                        "min": 3,
-                        "max": 99999
-                    },
-                    {
-                        "class": "solr.SynonymGraphFilterFactory",
-                        "synonyms": "/var/solr/data/music/synonyms.txt",
-                        "expand": false,
-                        "ignoreCase": true
                     },
                     {
                         "class": "solr.StopFilterFactory",
@@ -325,17 +202,12 @@
                     },
                     {
                         "class": "solr.PorterStemFilterFactory"
-                    },
-                    {
-                        "class": "solr.RemoveDuplicatesTokenFilterFactory"
                     }
                 ]
             },
             "queryAnalyzer": {
                 "tokenizer": {
-                    "class": "solr.PatternTokenizerFactory",
-                    "pattern": "(?i)((shiver pop)|(nyc rap)|(modern alternative rock)|(gruperas inmortales)|(christian pop)|(garage psych)|(piano mpb)|(missouri indie)|(italian tenor)|(indie fuzzpop)|(ny roots)|(sheffield indie)|(indie pop)|(big room)|(filter house)|(malaysian pop)|(uk contemporary r&b)|(german metal)|(modern uplift)|(indie garage rock)|(video game music)|(pop violin)|(swedish pop)|(contemporary post-bop)|(cinematic post-rock)|(chicago soul)|(deep contemporary country)|(irish rock)|(alabama indie)|(australian house)|(american post-rock)|(brazilian modern jazz)|(hip house)|(nu disco)|(new age piano)|(bay area indie)|(glam metal)|(mexican rock)|(north carolina roots)|(ska mexicano)|(urbano espanol)|(indonesian hip hop)|(red dirt)|(disco house)|(melbourne bounce international)|(boston punk)|(philly rap)|(latin rock)|(garage rock revival)|(classic rock)|[a-zA-Z0-9_]+)",
-                    "group": 0
+                    "class": "solr.StandardTokenizerFactory"
                 },
                 "filters": [
                     {
@@ -350,20 +222,7 @@
                     },
                     {
                         "class": "solr.SynonymGraphFilterFactory",
-                        "synonyms": "/var/solr/data/music/genreListSynonyms.txt",
-                        "expand": false,
-                        "ignoreCase": true
-                    },
-                    {
-                        "class": "solr.LengthFilterFactory",
-                        "min": 3,
-                        "max": 99999
-                    },
-                    {
-                        "class": "solr.SynonymGraphFilterFactory",
-                        "synonyms": "/var/solr/data/music/synonyms.txt",
-                        "expand": false,
-                        "ignoreCase": true
+                        "synonyms": "/var/solr/data/music/synonyms.txt"
                     },
                     {
                         "class": "solr.StopFilterFactory",
@@ -375,13 +234,6 @@
                     },
                     {
                         "class": "solr.PorterStemFilterFactory"
-                    },
-                    {
-                        "class": "solr.RemoveDuplicatesTokenFilterFactory"
-                    },
-                    {
-                        "class": "solr.DelimitedBoostTokenFilterFactory",
-                        "delimiter": "|"
                     }
                 ]
             }
@@ -391,8 +243,8 @@
         {
             "name": "uri",
             "type": "generic_text",
-            "indexed": false,
-            "stored": false,
+            "indexed": true,
+            "stored": true,
             "uninvertible": false
         },
         {
@@ -511,12 +363,11 @@
             "type": "bool",
             "indexed": true,
             "stored": true,
-            "uninvertible": false,
-            "multiValued": true
+            "uninvertible": false
         },
         {
             "name": "artists.popularity",
-            "type": "float",
+            "type": "int",
             "indexed": true,
             "stored": true,
             "uninvertible": false,
@@ -525,14 +376,14 @@
         {
             "name": "artists.uri",
             "type": "generic_text",
-            "indexed": false,
-            "stored": false,
+            "indexed": true,
+            "stored": true,
             "uninvertible": false,
             "multiValued": true
         },
         {
             "name": "artists.name",
-            "type": "artst_name",
+            "type": "artist_name",
             "indexed": true,
             "stored": true,
             "uninvertible": false,
@@ -540,7 +391,7 @@
         },
         {
             "name": "artists.genres",
-            "type": "genreName",
+            "type": "name",
             "indexed": true,
             "stored": true,
             "uninvertible": false,
@@ -549,8 +400,8 @@
         {
             "name": "albums.uri",
             "type": "generic_text",
-            "indexed": false,
-            "stored": false,
+            "indexed": true,
+            "stored": true,
             "uninvertible": false,
             "multiValued": true
         },
@@ -590,14 +441,14 @@
         {
             "name": "albums.artists.uri",
             "type": "generic_text",
-            "indexed": false,
-            "stored": false,
+            "indexed": true,
+            "stored": true,
             "uninvertible": false,
             "multiValued": true
         },
         {
             "name": "albums.artists.name",
-            "type": "artst_name",
+            "type": "artist_name",
             "indexed": true,
             "stored": true,
             "uninvertible": false,

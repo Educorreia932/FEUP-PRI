@@ -29,11 +29,14 @@ export default {
 					defType: "edismax",
 					start: start,
 					rows: 10,
-					qf: "name^5 artists.name^5 albums.name^3",
+					qf: "name^5 artists.name^5 albums.name^3 artists.genres lyrics",
 				}
 			})
 			.then((response) => {
 				const docs = response.data.response.docs;
+
+				console.log(docs)
+
 
 				// Iterate over retrieved documents
 				docs.forEach((doc, k) => {
@@ -72,13 +75,10 @@ export default {
 
 					doc.albums.artists = []
 
-					console.log(doc.artists)
-
 					for (const artist of doc.artists)
 						doc.albums.artists.push(artist)
 
 					docs[k] = doc;
-
 				})
 
 				return {
